@@ -103,6 +103,7 @@ h3 {
     gap: 20px;
     width: 100%;
     max-width: 1200px;
+    justify-items: center; /* Centra los elementos dentro del grid */
 }
 
 .module {
@@ -112,6 +113,7 @@ h3 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     width: 100%;
+    max-width: 600px; /* Ajusta el ancho máximo según tus necesidades */
 }
 
 .module h4 {
@@ -176,7 +178,7 @@ footer {
 /* Estilos para los estados de tickets */
 .estados-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center; /* Centra los elementos dentro del contenedor */
     flex-wrap: wrap;
     margin-bottom: 20px;
 }
@@ -238,8 +240,8 @@ footer {
     color: var(--color-gris);
 }
 
-/* Estilos para la tabla y lista de categorías */
-.categorias {
+/* Estilos para la tabla y lista de programas */
+.programas {
     table {
         width: 100%;
         border-collapse: collapse;

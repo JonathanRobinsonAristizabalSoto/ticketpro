@@ -1,6 +1,7 @@
 <?php
 include '../../conections/config.php';
 
+// Consulta SQL para obtener los tickets recientes
 $sql_tickets_recientes = "SELECT t.id_ticket, t.titulo, t.estado, t.fecha_creacion, u.nombre, u.apellido 
                           FROM Ticket t 
                           JOIN Usuarios u ON t.id_usuario = u.id_usuario 

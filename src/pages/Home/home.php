@@ -77,8 +77,8 @@ if ($stmt = $conexion->prepare($consulta)) {
                     <input type="text" id="titulo" name="titulo" required>
                     <label for="descripcion">Descripción:</label>
                     <textarea id="descripcion" name="descripcion" required></textarea>
-                    <label for="categoria">Categoría:</label>
-                    <select id="categoria" name="categoria" required></select>
+                    <label for="programa">Programa:</label>
+                    <select id="programa" name="programa" required></select>
                     <button type="submit">Crear</button>
                 </form>
             </section>
@@ -127,9 +127,9 @@ if ($stmt = $conexion->prepare($consulta)) {
                 </table>
             </section>
 
-            <!-- Categorías -->
-            <section class="module categorias">
-                <h4>Categorías</h4>
+            <!-- Programas -->
+            <section class="module programas">
+                <h4>Programas</h4>
                 <table>
                     <thead>
                         <tr>
@@ -145,7 +145,7 @@ if ($stmt = $conexion->prepare($consulta)) {
                             <th>Modalidad</th>
                         </tr>
                     </thead>
-                    <tbody id="categorias-list"></tbody>
+                    <tbody id="programas-list"></tbody>
                 </table>
             </section>
         </div>
@@ -175,14 +175,14 @@ if ($stmt = $conexion->prepare($consulta)) {
                 }
             });
 
-            // Cargar categorías
+            // Cargar programas
             $.ajax({
-                url: 'get_categorias.php',
+                url: 'get_programas.php',
                 method: 'GET',
                 success: function(data) {
-                    var categorias = JSON.parse(data);
-                    $('#categorias-list').html(categorias.lista);
-                    $('#categoria').html(categorias.opciones);
+                    var programas = JSON.parse(data);
+                    $('#programas-list').html(programas.lista);
+                    $('#programa').html(programas.opciones);
                 }
             });
 
@@ -191,7 +191,7 @@ if ($stmt = $conexion->prepare($consulta)) {
                 event.preventDefault();
                 var titulo = $('#titulo').val();
                 var descripcion = $('#descripcion').val();
-                var categoria = $('#categoria').val();
+                var programa = $('#programa').val();
 
                 $.ajax({
                     url: 'crear_ticket.php',
@@ -199,7 +199,7 @@ if ($stmt = $conexion->prepare($consulta)) {
                     data: {
                         titulo: titulo,
                         descripcion: descripcion,
-                        categoria: categoria
+                        programa: programa
                     },
                     success: function(response) {
                         alert('Ticket creado exitosamente');
