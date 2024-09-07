@@ -1,0 +1,372 @@
+/* Estilos generales */
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #fff;
+    color: #413f4c;
+}
+
+header {
+    background-color: #ff893a;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+.logo {
+    margin-left: 20px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s, border-radius 0.3s;
+}
+
+.logo img:hover {
+    transform: scale(1.2) rotate(360deg);
+}
+
+.textos-header {
+    display: flex;
+    align-items: center;
+}
+
+.textos-header h1 {
+    margin-right: 20px;
+}
+
+nav {
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.logout-button {
+    padding: 5px;
+    background-color: #ff893a;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #696969;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+h3 {
+    margin-bottom: 20px;
+}
+
+.module {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.module h4 {
+    color: #413f4c;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+footer {
+    background-color: #00AB00;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+
+  
+  nav.navegacion {
+    color: #34495e;
+    padding: 10px;
+    text-align: right;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    background-color: #34495e;
+    font-size: 16px;
+    padding: 0px 0px 0px 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    width: 140px;
+    display: inline-block;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 8px 0px 8px 0px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    color: #ffffff;
+  }
+  
+  .boton_editar_productos {
+    background-color: #34495e;
+    color: #ffffff;
+    padding: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .boton_eliminar_productos {
+    background-color: #34495e;
+    color: #ffffff;
+    padding: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .boton_editar_productos:hover {
+    background-color: #555;
+    
+  }
+  
+  .boton_eliminar_productos:hover {
+    background-color: #555;
+    
+  }
+  
+  nav ul li a:hover {
+    color: #969696;
+  }
+  
+  /* Estilos para las tablas */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    margin-bottom: 20px; /* Espacio entre tablas */
+    font-size: 14px;
+  }
+  
+  table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  /* Estilos para los botones en las tablas */
+  table button {
+    background-color: #34495e;
+    color: white; /* Cambiamos el color del texto a blanco */
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 5px;
+    text-decoration: none; /* Quitar la decoración de texto */
+  }
+  
+  table button:hover {
+    background-color: #555;
+    color: white; /* Cambiamos el color del texto a blanco al pasar el cursor */
+  }
+  
+  /* Estilos para la columna de "Descripción" en la tabla */
+  table td.descripcion {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  
+  
+  
+  /* Estilo específico para los botones en las tablas de módulos */
+  .modulo table button {
+    padding: 6px 12px;
+  }
+  
+  /* Estilos para los botones de crear, Modificar y Eliminar fuera de las tablas */
+  .crear-button, .modificar-button, .eliminar-button {
+    background-color: #555;
+    color: white; /* Cambiamos el color del texto a blanco */
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none; /* Quitar la decoración de texto */
+  }
+  
+  .crear-button:hover, .modificar-button:hover, .eliminar-button:hover {
+    background-color: #34495e;
+    color: white; /* Cambiamos el color del texto a blanco al pasar el cursor */
+  }
+  
+  /* Estilos para la barra de navegación lateral */
+  nav.panel {
+    padding: 30px 10px 10px 10px;
+    width: 200px;
+    position: fixed;
+    height: 100%;
+  }
+  
+  /* titulos del modulo configuracion */
+  .titulos_configuracion{
+    color: #34495e;
+    font-size: 24px;
+  }
+  
+  .parrafos_configuracion{
+    color: #34495e;
+    font-size: 20px;
+  }
+  
+  
+  /* botones del modulo configuracion */
+  .guardar-configuracion-button{
+    background-color: #34495e;
+    color: #ffffff;
+    border: 1px solid;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+  .guardar-configuracion-button:hover{
+    background-color: #5f5f5f;
+  
+  }
+  
+  
+  /* Estilos para los módulos */
+  main {
+    margin-left: 220px;
+    padding: 20px 50px 0px 0px;
+  }
+  
+  .modulo {
+    background-color: #f1f1f1;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1;
+    width: calc(100% - 40px);
+  }
+  
+  .modulo-header {
+    background-color: #555;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .modulo-content {
+    padding: 10px;
+  }
+  
+  /* Estilos para el pie de página */
+  footer {
+    background-color: #34495e;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* Estilos generales de la ventana modal */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #34495e;
+  }
+  
+  /* Estilos del contenido de la ventana modal */
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  /* Estilos para la sección de consultas */
+  /* Estilo para el campo de entrada de texto */
+  .campo-entrada {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Estilo para el botón del formulario */
+  .crear-button {
+    background-color: #34495e;
+    color: #fff;
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    text-decoration: none; /* Quitar la decoración de texto */
+  }
+  
+  .crear-button:hover {
+    background-color: #555;
+    color: #fff;
+  }
+  
+  .boton_consultar {
+    font-size: 16px;
+  }
+  

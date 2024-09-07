@@ -1,0 +1,153 @@
+/* Estilos generales */
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #fff;
+    color: #413f4c;
+}
+
+header {
+    background-color: #00AB00;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+.logo {
+    margin-left: 20px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s, border-radius 0.3s;
+}
+
+.logo img:hover {
+    transform: scale(1.2) rotate(360deg);
+}
+
+.textos-header {
+    display: flex;
+    align-items: center;
+}
+
+.textos-header h1 {
+    margin-right: 20px;
+}
+
+nav {
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.logout-button {
+    padding: 5px;
+    background-color: #ff893a;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #696969;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+h3 {
+    margin-bottom: 20px;
+}
+
+.module {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.module h4 {
+    color: #413f4c;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+footer {
+    background-color: #00AB00;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+/* Estilos para el formulario de nueva solicitud */
+#nueva-solicitud-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+}
+
+#nueva-solicitud-form label {
+    margin-bottom: 5px;
+    color: #413f4c;
+    font-size: 14px;
+}
+
+#nueva-solicitud-form input,
+#nueva-solicitud-form textarea {
+    padding: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#nueva-solicitud-form button {
+    padding: 8px 12px;
+    background-color: #00AB00;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#nueva-solicitud-form button:hover {
+    background-color: #00AB00;
+}
