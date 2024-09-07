@@ -73,12 +73,11 @@ if ($stmt = $conexion->prepare($consulta)) {
                         <option value="Consulta">CONSULTA</option>
                         <option value="Certificacion">CERTIFICACIÓN DE COMPETENCIAS LABORALES</option>
                     </select>
-                    <label for="titulo">Título:</label>
-                    <input type="text" id="titulo" name="titulo" required>
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" required></textarea>
                     <label for="programa">Programa:</label>
                     <select id="programa" name="programa" required></select>
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" required></textarea>
+                    
                     <button type="submit">Crear</button>
                 </form>
             </section>
