@@ -67,6 +67,12 @@ if ($stmt = $conexion->prepare($consulta)) {
             <section class="module">
                 <h4>Crear Nuevo Ticket</h4>
                 <form id="nueva-solicitud-form">
+                    <label for="tipo_solicitud">Tipo de solicitud:</label>
+                    <select id="tipo_solicitud" name="tipo_solicitud" required>
+                        <option value="Formacion">FORMACION</option>
+                        <option value="Consulta">CONSULTA</option>
+                        <option value="Certificacion">CERTIFICACIÓN DE COMPETENCIAS LABORALES</option>
+                    </select>
                     <label for="titulo">Título:</label>
                     <input type="text" id="titulo" name="titulo" required>
                     <label for="descripcion">Descripción:</label>
@@ -124,7 +130,23 @@ if ($stmt = $conexion->prepare($consulta)) {
             <!-- Categorías -->
             <section class="module categorias">
                 <h4>Categorías</h4>
-                <ul id="categorias-list"></ul>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Versión</th>
+                            <th>Tipo de Formación</th>
+                            <th>Nombre</th>
+                            <th>Nivel de Formación</th>
+                            <th>Duración</th>
+                            <th>Línea Tecnológica</th>
+                            <th>Red Tecnológica</th>
+                            <th>Red de Conocimiento</th>
+                            <th>Modalidad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="categorias-list"></tbody>
+                </table>
             </section>
         </div>
     </main>

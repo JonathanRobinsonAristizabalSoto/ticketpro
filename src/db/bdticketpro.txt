@@ -36,8 +36,17 @@ CREATE TABLE Usuarios (
 -- Estructura de tabla para la tabla `Categoria`
 CREATE TABLE Categoria (
     id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    codigo VARCHAR(50) NOT NULL,
+    version VARCHAR(50) NOT NULL,
+    tipo_de_formacion VARCHAR(255) NOT NULL,
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT,
+    nivel_de_formacion VARCHAR(255) NOT NULL,
+    duracion INT NOT NULL,
+    linea_tecnologica VARCHAR(255) NOT NULL,
+    red_tecnologica VARCHAR(255) NOT NULL,
+    red_de_conocimiento VARCHAR(255) NOT NULL,
+    modalidad VARCHAR(255) NOT NULL,
     UNIQUE (nombre)
 );
 
@@ -99,12 +108,21 @@ INSERT INTO Usuarios (id_usuario, tipo_documento, documento, nombre, apellido, e
 (5, 'CC', '55667788', 'Luis', 'Rodríguez', 'luis.rodriguez@example.com', '3112233445', 'Santander', 'Bucaramanga', 'password123', 2, '2023-10-04', 'activo');
 
 -- Volcado de datos para la tabla `Categoria`
-INSERT INTO Categoria (id_categoria, nombre, descripcion) VALUES
-(1, 'Curso de Altura', 'Capacitación para trabajos en altura.'),
-(2, 'Soporte Técnico', 'Asistencia técnica para resolver problemas de hardware y software.'),
-(3, 'Consultoría en TIC', 'Servicios de consultoría en tecnologías de la información y comunicación.'),
-(4, 'Capacitación en Desarrollo de Software', 'Cursos y talleres sobre desarrollo de software.'),
-(5, 'Mantenimiento de Equipos de Cómputo', 'Servicios de mantenimiento preventivo y correctivo de equipos de cómputo.');
+INSERT INTO Categoria (codigo, version, tipo_de_formacion, nombre, nivel_de_formacion, duracion, linea_tecnologica, red_tecnologica, red_de_conocimiento, modalidad, descripcion) VALUES
+('22620442', '3', 'Complementaria', 'BASICO OPERATIVO TRABAJO SEGURO EN ALTURAS', 'Curso especial', 8, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('22620443', '2', 'Complementaria', 'ADMINISTRATIVO  PARA JEFES DE AREA TRABAJO SEGURO EN ALTURAS', 'Curso especial', 10, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('22620444', '3', 'Complementaria', 'COORDINADOR DE TRABAJO SEGURO EN ALTURAS.', 'Curso especial', 80, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('22620461', '2', 'Complementaria', 'RESCATE INDUSTRIAL EN TRABAJO EN ALTURAS', 'Curso especial', 48, 'PRODUCCIÓN Y TRANSFORMACIÓN', 'TECNOLOGÍAS DE PRODUCCIÓN INDUSTRIAL', 'Infraestructura', 'Presencial', 'Capacitación para trabajos en altura.'),
+('22620489', '1', 'Complementaria', 'TRABAJADOR AUTORIZADO PARA TRABAJO EN ALTURAS', 'Curso especial', 32, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('22620490', '1', 'Complementaria', 'COORDINADOR DE TRABAJO EN ALTURAS', 'Curso especial', 80, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('22620491', '1', 'Complementaria', 'REENTRENAMIENTO EN TRABAJO EN ALTURAS PARA TRABAJADOR AUTORIZADO', 'Curso especial', 16, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('22620492', '1', 'Complementaria', 'ACTUALIZACION DE COORDINADORES PARA TRABAJO EN ALTURAS', 'Curso especial', 16, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('22620493', '1', 'Complementaria', 'ACTUALIZACION DE ENTRENADORES PARA TRABAJO EN ALTURAS', 'Curso especial', 32, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('22620494', '1', 'Complementaria', 'ENTRENADOR PARA TRABAJO EN ALTURAS', 'Curso especial', 130, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('22620495', '1', 'Complementaria', 'FORMADOR DE ENTRENADORES PARA TRABAJO EN ALTURAS', 'Curso especial', 48, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('22620496', '1', 'Complementaria', 'JEFES DE AREA PARA TRABAJO EN ALTURAS', 'Curso especial', 8, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('41311191', '1', 'Complementaria', 'INSPECTOR DE CENTROS DE FORMACION Y ENTRENAMIENTO PARA TRABAJO EN ALTURAS Y ESPACIOS CONFINADOS', 'Curso especial', 48, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.'),
+('86110513', '2', 'Complementaria', 'ACONDICIONAMIENTO DE ANDAMIOS PARA TRABAJO EN ALTURAS', 'Curso especial', 48, 'MATERIALES HERRAMIENTAS', 'MATERIALES PARA LA CONSTRUCCIÓN', 'Construcción', 'Presencial', 'Capacitación para trabajos en altura.');
 
 -- Volcado de datos para la tabla `Ticket`
 INSERT INTO Ticket (id_ticket, id_usuario, titulo, descripcion, prioridad, estado, id_agente, fecha_creacion, fecha_actualizacion, id_categoria) VALUES
@@ -124,3 +142,16 @@ INSERT INTO Comentario (id_comentario, id_ticket, id_usuario, comentario, fecha_
 (6, 4, 4, 'Capacitación en desarrollo de aplicaciones web. La entidad está implementando un nuevo sistema.', '2023-10-04'),
 (7, 5, 3, 'Podemos agendar una reunión para discutir los detalles.', '2023-10-05'),
 (8, 5, 5, 'Perfecto. Necesitamos consultoría para un proyecto de transformación digital.', '2023-10-05');
+
+-- Volcado de datos para la tabla `Evento`
+INSERT INTO Evento (id_evento, id_ticket, accion, id_usuario, fecha_evento) VALUES
+(1, 1, 'Creación de ticket', 1, '2023-10-01'),
+(2, 1, 'Asignación de agente', 2, '2023-10-01'),
+(3, 2, 'Creación de ticket', 2, '2023-10-02'),
+(4, 2, 'Cierre de ticket', 1, '2023-10-02'),
+(5, 3, 'Creación de ticket', 3, '2023-10-03'),
+(6, 3, 'Actualización de ticket', 4, '2023-10-03'),
+(7, 4, 'Creación de ticket', 4, '2023-10-04'),
+(8, 4, 'Asignación de agente', 5, '2023-10-04'),
+(9, 5, 'Creación de ticket', 5, '2023-10-05'),
+(10, 5, 'Cierre de ticket', 3, '2023-10-05');
