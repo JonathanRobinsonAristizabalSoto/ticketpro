@@ -2,14 +2,14 @@
 include '../conections/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $tipo_documento = $_POST['typeDocument'];
+    $documento = $_POST['documento'];
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $email = $_POST['email'];
     $telefono = $_POST['telefono'];
     $departamento = $_POST['departamento'];
     $municipio = $_POST['municipio'];
-    $documento = $_POST['documento'];
-    $tipo_documento = $_POST['typeDocument'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm-password'];
     $tipo_usuario_id = $_POST['tipoUsuario'];
@@ -38,21 +38,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
+    // Verificar que el id_rol existe en la tabla rol
+    $stmt = $conexion->prepare("SELECT id_rol FROM rol WHERE id_rol = ?");
+    $stmt->bind_param("i", $tipo_usuario_id);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows == 0) {
+        echo "El rol seleccionado no es válido.";
+        $stmt->close();
+        exit;
+    }
+    $stmt->close();
+
     // Hash the password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, apellido, email, telefono, departamento, municipio, documento, tipo_documento, password, tipo_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssssssi", $nombre, $apellido, $email, $telefono, $departamento, $municipio, $documento, $tipo_documento, $hashed_password, $tipo_usuario_id);
+    // Preparar la consulta SQL
+    $stmt = $conexion->prepare("INSERT INTO usuarios (tipo_documento, documento, nombre, apellido, email, telefono, departamento, municipio, password, id_rol, fecha_registro, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'activo')");
+    $stmt->bind_param("sssssssssi", $tipo_documento, $documento, $nombre, $apellido, $email, $telefono, $departamento, $municipio, $hashed_password, $tipo_usuario_id);
 
+    // Ejecutar la consulta y verificar el resultado
     if ($stmt->execute()) {
         echo "Registro exitoso";
     } else {
         echo "Error: " . $stmt->error;
     }
 
+    // Cerrar la declaración
     $stmt->close();
 }
 
+// Cerrar la conexión
 $conexion->close();
 ?>
 
@@ -89,24 +106,6 @@ $conexion->close();
         <div class="register-container">
             <h2>Registrarse</h2>
             <form action="./register.php" method="post">
-                <!-- Campo de nombre -->
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required placeholder="Nombre">
-
-                <!-- Campo de apellido -->
-                <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" required placeholder="Apellido">
-
-                <!-- Campo de correo electrónico -->
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" required placeholder="Correo electrónico">
-
-                <!-- Campo de teléfono -->
-                <label for="telefono">Teléfono:</label>
-                <input type="tel" id="telefono" name="telefono" required placeholder="Teléfono">
-
-                <?php include 'includes/departamentos.php'; ?>
-
                 <!-- Selector de tipo de documento -->
                 <label for="typeDocument">Tipo de documento:</label>
                 <select id="typeDocument" name="typeDocument" required>
@@ -121,6 +120,24 @@ $conexion->close();
                 <label for="documento">Documento:</label>
                 <input type="text" id="documento" name="documento" required placeholder="Documento">
 
+                <!-- Campo de nombre -->
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Nombre">
+
+                <!-- Campo de apellido -->
+                <label for="apellido">Apellidos:</label>
+                <input type="text" id="apellido" name="apellido" required placeholder="Apellido">
+
+                <!-- Campo de correo electrónico -->
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required placeholder="Correo electrónico">
+
+                <!-- Campo de teléfono -->
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required placeholder="Teléfono">
+
+                <?php include 'includes/departamentos.php'; ?>
+
                 <!-- Campo de contraseña -->
                 <p>La contraseña debe tener al menos 6 caracteres, una letra mayúscula y un símbolo.</p>
                 <label for="password">Contraseña:</label>
@@ -133,8 +150,8 @@ $conexion->close();
                 <!-- Tipo de usuario -->
                 <label for="tipoUsuario">Tipo de usuario:</label>
                 <select id="tipoUsuario" name="tipoUsuario" required>
-                    <option value="0">Usuario</option>
                     <option value="1">Administrador</option>
+                    <option value="2">Usuario</option>
                 </select>
 
                 <!-- Acciones del formulario -->

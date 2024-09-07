@@ -1,0 +1,126 @@
+-- Eliminar la base de datos si existe
+DROP DATABASE IF EXISTS `ticketpro`;
+
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS `ticketpro`;
+USE `ticketpro`;
+
+-- Estructura de tabla para la tabla `Rol`
+CREATE TABLE Rol (
+    id_rol INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_rol VARCHAR(255) NOT NULL,
+    descripcion_rol TEXT,
+    UNIQUE (nombre_rol)
+);
+
+-- Estructura de tabla para la tabla `Usuarios`
+CREATE TABLE Usuarios (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    tipo_documento VARCHAR(255) NOT NULL,
+    documento VARCHAR(255) NOT NULL UNIQUE,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    telefono VARCHAR(20),
+    departamento VARCHAR(255),
+    municipio VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
+    id_rol INT,
+    fecha_registro DATE,
+    estado VARCHAR(50),
+    FOREIGN KEY (id_rol) REFERENCES Rol(id_rol),
+    INDEX (email),
+    INDEX (documento)
+);
+
+-- Estructura de tabla para la tabla `Categoria`
+CREATE TABLE Categoria (
+    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    UNIQUE (nombre)
+);
+
+-- Estructura de tabla para la tabla `Ticket`
+CREATE TABLE Ticket (
+    id_ticket INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT,
+    titulo VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    prioridad VARCHAR(50),
+    estado VARCHAR(50),
+    id_agente INT,
+    fecha_creacion DATE,
+    fecha_actualizacion DATE,
+    id_categoria INT,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
+    FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria),
+    INDEX (id_usuario),
+    INDEX (id_categoria)
+);
+
+-- Estructura de tabla para la tabla `Comentario`
+CREATE TABLE Comentario (
+    id_comentario INT PRIMARY KEY AUTO_INCREMENT,
+    id_ticket INT,
+    id_usuario INT,
+    comentario TEXT NOT NULL,
+    fecha_comentario DATE,
+    FOREIGN KEY (id_ticket) REFERENCES Ticket(id_ticket),
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
+    INDEX (id_ticket),
+    INDEX (id_usuario)
+);
+
+-- Estructura de tabla para la tabla `Evento`
+CREATE TABLE Evento (
+    id_evento INT PRIMARY KEY AUTO_INCREMENT,
+    id_ticket INT,
+    accion VARCHAR(255) NOT NULL,
+    id_usuario INT,
+    fecha_evento DATE,
+    FOREIGN KEY (id_ticket) REFERENCES Ticket(id_ticket),
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
+    INDEX (id_ticket),
+    INDEX (id_usuario)
+);
+
+-- Volcado de datos para la tabla `Rol`
+INSERT INTO Rol (id_rol, nombre_rol, descripcion_rol) VALUES
+(1, 'Administrador', NULL),
+(2, 'Usuario', NULL);
+
+-- Volcado de datos para la tabla `Usuarios`
+INSERT INTO Usuarios (id_usuario, tipo_documento, documento, nombre, apellido, email, telefono, departamento, municipio, password, id_rol, fecha_registro, estado) VALUES
+(1, 'CC', '1053810807', 'Jonathan Robinson', 'Aristizabal Soto', 'admin@gmail.com', '3187542709', 'Caldas', 'Manizales', '$2y$10$DZZkPzlQlZzEtlyyIdPFju3WGm8mUsLRKRna6qpu.9I5zUgm.8HtG', 1, '2024-09-07', 'activo'),
+(2, 'CC', '87654321', 'María', 'Gómez', 'maria.gomez@example.com', '3201234567', 'Antioquia', 'Medellín', 'password123', 2, '2023-10-01', 'activo'),
+(3, 'CC', '11223344', 'Carlos', 'López', 'carlos.lopez@example.com', '3109876543', 'Bogotá', 'Bogotá', 'password123', 2, '2023-10-02', 'activo'),
+(4, 'CC', '44332211', 'Ana', 'Martínez', 'ana.martinez@example.com', '3001239876', 'Valle del Cauca', 'Cali', 'password123', 2, '2023-10-03', 'activo'),
+(5, 'CC', '55667788', 'Luis', 'Rodríguez', 'luis.rodriguez@example.com', '3112233445', 'Santander', 'Bucaramanga', 'password123', 2, '2023-10-04', 'activo');
+
+-- Volcado de datos para la tabla `Categoria`
+INSERT INTO Categoria (id_categoria, nombre, descripcion) VALUES
+(1, 'Curso de Altura', 'Capacitación para trabajos en altura.'),
+(2, 'Soporte Técnico', 'Asistencia técnica para resolver problemas de hardware y software.'),
+(3, 'Consultoría en TIC', 'Servicios de consultoría en tecnologías de la información y comunicación.'),
+(4, 'Capacitación en Desarrollo de Software', 'Cursos y talleres sobre desarrollo de software.'),
+(5, 'Mantenimiento de Equipos de Cómputo', 'Servicios de mantenimiento preventivo y correctivo de equipos de cómputo.');
+
+-- Volcado de datos para la tabla `Ticket`
+INSERT INTO Ticket (id_ticket, id_usuario, titulo, descripcion, prioridad, estado, id_agente, fecha_creacion, fecha_actualizacion, id_categoria) VALUES
+(1, 1, 'Solicitud de cupos para Curso de Altura', 'Necesito 5 cupos para el curso de altura.', 'Alta', 'abierto', NULL, '2023-10-01', '2023-10-01', 1),
+(2, 2, 'Apertura de nuevo programa de Soporte Técnico', 'Solicito la apertura de un nuevo programa de soporte técnico.', 'Media', 'cerrado', NULL, '2023-10-02', '2023-10-02', 2),
+(3, 3, 'Solicitud de cupos para Mantenimiento de Equipos de Cómputo', 'Necesito 3 cupos para el mantenimiento de equipos de cómputo.', 'Alta', 'en progreso', NULL, '2023-10-03', '2023-10-03', 5),
+(4, 4, 'Apertura de nuevo programa de Capacitación en Desarrollo de Software', 'Solicito la apertura de un nuevo programa de capacitación en desarrollo de software.', 'Baja', 'abierto', NULL, '2023-10-04', '2023-10-04', 4),
+(5, 5, 'Solicitud de cupos para Consultoría en TIC', 'Necesito 2 cupos para consultoría en TIC.', 'Media', 'cerrado', NULL, '2023-10-05', '2023-10-05', 3);
+
+-- Volcado de datos para la tabla `Comentario`
+INSERT INTO Comentario (id_comentario, id_ticket, id_usuario, comentario, fecha_comentario) VALUES
+(1, 1, 2, '¿Cuándo necesitan los cupos?', '2023-10-01'),
+(2, 1, 1, 'Para la próxima semana. La empresa necesita capacitar a su personal para cumplir con las normativas de seguridad.', '2023-10-01'),
+(3, 3, 4, '¿Cuándo podemos agendar el mantenimiento?', '2023-10-03'),
+(4, 3, 3, 'Lo antes posible. Los equipos están presentando fallas y necesitamos mantener la operatividad.', '2023-10-03'),
+(5, 4, 5, '¿Qué tipo de capacitación necesitan?', '2023-10-04'),
+(6, 4, 4, 'Capacitación en desarrollo de aplicaciones web. La entidad está implementando un nuevo sistema.', '2023-10-04'),
+(7, 5, 3, 'Podemos agendar una reunión para discutir los detalles.', '2023-10-05'),
+(8, 5, 5, 'Perfecto. Necesitamos consultoría para un proyecto de transformación digital.', '2023-10-05');

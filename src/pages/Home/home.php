@@ -8,7 +8,6 @@ if (!isset($_SESSION['documento'])) {
 }
 
 if (isset($_POST['cerrar_sesion'])) {
-    // Cerrar sesión solo al hacer clic en "cerrar sesión"
     session_unset(); // Eliminar todas las variables de sesión
     session_destroy(); // Destruir la sesión
     header("Location: ../../../index.php");
@@ -39,8 +38,9 @@ if ($stmt = $conexion->prepare($consulta)) {
     <link rel="stylesheet" href="../../../assets/css/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -62,33 +62,71 @@ if ($stmt = $conexion->prepare($consulta)) {
 
     <main>
         <h3>Bienvenido a TicketPro+</h3>
-        <!-- Contenido dinámico -->
-        <section class="module" id="mis-solicitudes">
-            <h4>Mis Solicitudes</h4>
-            <ul id="solicitudes-list">
-                <?php
-                // Verificar que $solicitudes esté definida y sea un array antes de iterar sobre ella
-                if (isset($solicitudes) && is_array($solicitudes)) {
-                    foreach ($solicitudes as $solicitud) {
-                        echo "<li><strong>{$solicitud['titulo']}</strong><br>{$solicitud['descripcion']}<br><button onclick='modificarSolicitud({$solicitud['id']})'>Modificar</button><button onclick='eliminarSolicitud({$solicitud['id']})'>Eliminar</button></li>";
-                    }
-                } else {
-                    echo "<li>No hay solicitudes disponibles</li>";
-                }
-                ?>
-            </ul>
-        </section>
-        <section class="module">
-            <h4>Crear Nueva Solicitud</h4>
-            <!-- Formulario interactivo para crear una nueva solicitud -->
-            <form id="nueva-solicitud-form">
-                <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" required>
-                <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" required></textarea>
-                <button type="submit">Crear</button>
-            </form>
-        </section>
+        <div class="dashboard">
+            <!-- Crear Nuevo Ticket -->
+            <section class="module">
+                <h4>Crear Nuevo Ticket</h4>
+                <form id="nueva-solicitud-form">
+                    <label for="titulo">Título:</label>
+                    <input type="text" id="titulo" name="titulo" required>
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" required></textarea>
+                    <label for="categoria">Categoría:</label>
+                    <select id="categoria" name="categoria" required></select>
+                    <button type="submit">Crear</button>
+                </form>
+            </section>
+
+            <!-- Estados de Tickets -->
+            <section class="module estados">
+                <h4>Estados de Tickets</h4>
+                <div class="estados-container" id="estados-container">
+                    <div class="estado ticket-abierto">
+                        <h5>Tickets Abiertos</h5>
+                        <p id="tickets-abiertos">0</p>
+                    </div>
+                    <div class="estado ticket-progreso">
+                        <h5>Tickets En Progreso</h5>
+                        <p id="tickets-progreso">0</p>
+                    </div>
+                    <div class="estado ticket-pendiente">
+                        <h5>Tickets Pendientes</h5>
+                        <p id="tickets-pendientes">0</p>
+                    </div>
+                    <div class="estado ticket-resuelto">
+                        <h5>Tickets Resueltos</h5>
+                        <p id="tickets-resueltos">0</p>
+                    </div>
+                    <div class="estado ticket-cerrado">
+                        <h5>Tickets Cerrados</h5>
+                        <p id="tickets-cerrados">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tickets Recientes -->
+            <section class="module tickets-recientes">
+                <h4>Tickets Recientes</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Estado</th>
+                            <th>Fecha de Creación</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tickets-recientes-list"></tbody>
+                </table>
+            </section>
+
+            <!-- Categorías -->
+            <section class="module categorias">
+                <h4>Categorías</h4>
+                <ul id="categorias-list"></ul>
+            </section>
+        </div>
     </main>
 
     <footer>
@@ -96,59 +134,67 @@ if ($stmt = $conexion->prepare($consulta)) {
     </footer>
 
     <script>
-        // Función para cargar las solicitudes dinámicamente
-        function cargarSolicitudes() {
-            // Simular carga de datos
-            setTimeout(function() {
-                var solicitudesList = document.getElementById('solicitudes-list');
-                var solicitudes = ['Solicitud 1', 'Solicitud 2', 'Solicitud 3'];
+        $(document).ready(function() {
+            // Cargar estados de tickets
+            $.ajax({
+                url: 'get_estados.php',
+                method: 'GET',
+                success: function(data) {
+                    $('#estados-container').html(data);
+                }
+            });
 
-                solicitudes.forEach(function(solicitud) {
-                    var li = document.createElement('li');
-                    li.textContent = solicitud;
-                    solicitudesList.appendChild(li);
+            // Cargar tickets recientes
+            $.ajax({
+                url: 'get_tickets_recientes.php',
+                method: 'GET',
+                success: function(data) {
+                    $('#tickets-recientes-list').html(data);
+                }
+            });
+
+            // Cargar categorías
+            $.ajax({
+                url: 'get_categorias.php',
+                method: 'GET',
+                success: function(data) {
+                    var categorias = JSON.parse(data);
+                    $('#categorias-list').html(categorias.lista);
+                    $('#categoria').html(categorias.opciones);
+                }
+            });
+
+            // Crear nuevo ticket
+            $('#nueva-solicitud-form').submit(function(event) {
+                event.preventDefault();
+                var titulo = $('#titulo').val();
+                var descripcion = $('#descripcion').val();
+                var categoria = $('#categoria').val();
+
+                $.ajax({
+                    url: 'crear_ticket.php',
+                    method: 'POST',
+                    data: {
+                        titulo: titulo,
+                        descripcion: descripcion,
+                        categoria: categoria
+                    },
+                    success: function(response) {
+                        alert('Ticket creado exitosamente');
+                        $('#nueva-solicitud-form')[0].reset();
+                        // Recargar tickets recientes
+                        $.ajax({
+                            url: 'get_tickets_recientes.php',
+                            method: 'GET',
+                            success: function(data) {
+                                $('#tickets-recientes-list').html(data);
+                            }
+                        });
+                    }
                 });
-            }, 1000); // Simula una carga de datos que tarda 1 segundo
-        }
-
-        // Llamar a la función para cargar las solicitudes al cargar la página
-        window.onload = cargarSolicitudes;
-
-        // Funciones para modificar y eliminar solicitudes (puedes enviar una solicitud a un script PHP que realice la acción)
-        function modificarSolicitud(id) {
-            console.log('Modificar solicitud con ID:', id);
-            // Aquí puedes implementar la lógica para modificar la solicitud
-        }
-
-        function eliminarSolicitud(id) {
-            console.log('Eliminar solicitud con ID:', id);
-            // Aquí puedes implementar la lógica para eliminar la solicitud
-        }
-
-        // Formulario interactivo para crear una nueva solicitud
-        var nuevaSolicitudForm = document.getElementById('nueva-solicitud-form');
-        nuevaSolicitudForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Evitar que se recargue la página
-            var titulo = document.getElementById('titulo').value;
-            var descripcion = document.getElementById('descripcion').value;
-            // Aquí puedes enviar los datos del formulario para crear la solicitud
-            console.log('Título:', titulo);
-            console.log('Descripción:', descripcion);
-            // Luego puedes actualizar la lista de solicitudes con la nueva solicitud
-            var solicitudesList = document.getElementById('solicitudes-list');
-            var li = document.createElement('li');
-            li.textContent = titulo + ' - ' + descripcion;
-            solicitudesList.appendChild(li);
-            // Limpiar el formulario después de enviarlo
-            nuevaSolicitudForm.reset();
+            });
         });
     </script>
 </body>
 
 </html>
-
-
-
-
-
-

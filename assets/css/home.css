@@ -1,3 +1,13 @@
+/* Variables de colores */
+:root {
+    --color-blanco: #ffffff;
+    --color-gris-oscuro: #413f4c;
+    --color-verde: #00AB00;
+    --color-gris: #696969;
+    --color-naranja: #ff893a;
+    --color-gris-claro: #cccccc;
+}
+
 /* Estilos generales */
 body {
     font-family: "Poppins", sans-serif;
@@ -6,18 +16,18 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #fff;
-    color: #413f4c;
+    background-color: var(--color-blanco);
+    color: var(--color-gris-oscuro);
 }
 
+/* Estilos del encabezado */
 header {
-    background-color: #00AB00;
-    color: #fff;
+    background-color: var(--color-verde);
+    color: var(--color-blanco);
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.3rem;
 }
 
 .logo {
@@ -35,8 +45,9 @@ header {
 }
 
 .textos-header {
-    display: flex;
+    display: contents;
     align-items: center;
+    font-size: 1rem;
 }
 
 .textos-header h1 {
@@ -48,7 +59,7 @@ nav {
 }
 
 nav a {
-    color: #fff;
+    color: var(--color-blanco);
     text-decoration: none;
     margin-left: 20px;
     font-size: 16px;
@@ -59,9 +70,10 @@ nav a:hover {
 }
 
 .logout-button {
-    padding: 5px;
-    background-color: #ff893a;
-    color: #fff;
+    padding: 8px;
+    font-size: 0.9rem;
+    background-color: var(--color-naranja);
+    color: var(--color-blanco);
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -69,9 +81,10 @@ nav a:hover {
 }
 
 .logout-button:hover {
-    background-color: #696969;
+    background-color: var(--color-gris);
 }
 
+/* Estilos del contenido principal */
 main {
     flex: 1;
     display: flex;
@@ -84,18 +97,25 @@ h3 {
     margin-bottom: 20px;
 }
 
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
 .module {
-    background-color: #fff;
+    background-color: var(--color-blanco);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     width: 100%;
-    max-width: 600px;
 }
 
 .module h4 {
-    color: #413f4c;
+    color: var(--color-gris-oscuro);
     margin-bottom: 10px;
 }
 
@@ -108,9 +128,10 @@ li {
     margin-bottom: 5px;
 }
 
+/* Estilos del pie de página */
 footer {
-    background-color: #00AB00;
-    color: #fff;
+    background-color: var(--color-verde);
+    color: var(--color-blanco);
     padding: 10px 0;
     text-align: center;
     font-size: 0.875rem;
@@ -121,27 +142,27 @@ footer {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 400px;
 }
 
 #nueva-solicitud-form label {
     margin-bottom: 5px;
-    color: #413f4c;
+    color: var(--color-gris-oscuro);
     font-size: 14px;
 }
 
 #nueva-solicitud-form input,
-#nueva-solicitud-form textarea {
+#nueva-solicitud-form textarea,
+#nueva-solicitud-form select {
     padding: 6px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-gris-claro);
     border-radius: 3px;
 }
 
 #nueva-solicitud-form button {
     padding: 8px 12px;
-    background-color: #00AB00;
-    color: #fff;
+    background-color: var(--color-verde);
+    color: var(--color-blanco);
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -149,5 +170,88 @@ footer {
 }
 
 #nueva-solicitud-form button:hover {
-    background-color: #00AB00;
+    background-color: var(--color-gris);
+}
+
+/* Estilos para los estados de tickets */
+.estados-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.estado {
+    background-color: var(--color-blanco);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    text-align: center;
+    flex: 1;
+    min-width: 150px;
+    max-width: 300px; /* Ajusta este valor según tus necesidades */
+}
+
+/* Estilos para la tabla de tickets recientes */
+.tickets-recientes table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.tickets-recientes th, .tickets-recientes td {
+    padding: 10px;
+    border: 1px solid var(--color-gris-claro);
+    text-align: left;
+}
+
+.tickets-recientes th {
+    background-color: var(--color-verde);
+    color: var(--color-blanco);
+    text-align: center;
+}
+
+/* Colores para los contenedores de tickets */
+.ticket-abierto {
+    background-color: var(--color-naranja);
+    color: var(--color-blanco);
+}
+
+.ticket-cerrado {
+    background-color: var(--color-verde);
+    color: var(--color-blanco);
+}
+
+.ticket-pendiente {
+    background-color: var(--color-gris-oscuro);
+    color: var(--color-blanco);
+}
+
+.ticket-progreso {
+    background-color: var(--color-gris);
+    color: var(--color-blanco);
+}
+
+.ticket-resuelto {
+    background-color: var(--color-gris-claro);
+    color: var(--color-gris);
+}
+
+/* Estilos para la lista de categorías */
+.categorias ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0;
+    list-style-type: none;
+}
+
+.categorias li {
+    background-color: var(--color-verde);
+    color: var(--color-blanco);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }

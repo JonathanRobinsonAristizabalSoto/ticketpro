@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-09-2024 a las 02:38:35
+-- Tiempo de generación: 07-09-2024 a las 08:26:14
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -73,6 +73,14 @@ CREATE TABLE `rol` (
   `descripcion_rol` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id_rol`, `nombre_rol`, `descripcion_rol`) VALUES
+(1, 'Administrador', NULL),
+(2, 'Usuario', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -100,19 +108,26 @@ CREATE TABLE `ticket` (
 
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
+  `tipo_documento` varchar(255) NOT NULL,
+  `documento` varchar(255) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `apellido` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `departamento` varchar(255) DEFAULT NULL,
   `municipio` varchar(255) DEFAULT NULL,
-  `documento` varchar(255) NOT NULL,
-  `tipo_documento` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `id_rol` int(11) DEFAULT NULL,
   `fecha_registro` date DEFAULT NULL,
   `estado` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `tipo_documento`, `documento`, `nombre`, `apellido`, `email`, `telefono`, `departamento`, `municipio`, `password`, `id_rol`, `fecha_registro`, `estado`) VALUES
+(1, 'CC', '1053810807', 'Jonathan Robinson', 'Aristizabal Soto', 'admin@gmail.com', '3187542709', 'Caldas', 'Manizales', '$2y$10$DZZkPzlQlZzEtlyyIdPFju3WGm8mUsLRKRna6qpu.9I5zUgm.8HtG', 1, '2024-09-07', 'activo');
 
 --
 -- Índices para tablas volcadas
@@ -161,8 +176,8 @@ ALTER TABLE `ticket`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `documento` (`documento`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD KEY `id_rol` (`id_rol`),
   ADD KEY `email_2` (`email`),
   ADD KEY `documento_2` (`documento`);
@@ -193,7 +208,7 @@ ALTER TABLE `evento`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ticket`
@@ -205,7 +220,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
