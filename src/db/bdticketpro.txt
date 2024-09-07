@@ -54,6 +54,7 @@ CREATE TABLE Categoria (
 CREATE TABLE Ticket (
     id_ticket INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT,
+    tipo_de_solicitud VARCHAR(50),
     titulo VARCHAR(255) NOT NULL,
     descripcion TEXT,
     prioridad VARCHAR(50),
@@ -126,11 +127,20 @@ INSERT INTO Categoria (codigo, version, tipo_de_formacion, nombre, nivel_de_form
 
 -- Volcado de datos para la tabla `Ticket`
 INSERT INTO Ticket (id_ticket, id_usuario, titulo, descripcion, prioridad, estado, id_agente, fecha_creacion, fecha_actualizacion, id_categoria) VALUES
-(1, 1, 'Solicitud de cupos para Curso de Altura', 'Necesito 5 cupos para el curso de altura.', 'Alta', 'abierto', NULL, '2023-10-01', '2023-10-01', 1),
-(2, 2, 'Apertura de nuevo programa de Soporte Técnico', 'Solicito la apertura de un nuevo programa de soporte técnico.', 'Media', 'cerrado', NULL, '2023-10-02', '2023-10-02', 2),
-(3, 3, 'Solicitud de cupos para Mantenimiento de Equipos de Cómputo', 'Necesito 3 cupos para el mantenimiento de equipos de cómputo.', 'Alta', 'en progreso', NULL, '2023-10-03', '2023-10-03', 5),
-(4, 4, 'Apertura de nuevo programa de Capacitación en Desarrollo de Software', 'Solicito la apertura de un nuevo programa de capacitación en desarrollo de software.', 'Baja', 'abierto', NULL, '2023-10-04', '2023-10-04', 4),
-(5, 5, 'Solicitud de cupos para Consultoría en TIC', 'Necesito 2 cupos para consultoría en TIC.', 'Media', 'cerrado', NULL, '2023-10-05', '2023-10-05', 3);
+(1, 1, 'Solicitud de cupos para BASICO OPERATIVO TRABAJO SEGURO EN ALTURAS', 'Necesito 5 cupos para el curso de trabajo seguro en alturas.', 'Alta', 'abierto', NULL, '2023-10-01', '2023-10-01', 1),
+(2, 2, 'Apertura de nuevo programa ADMINISTRATIVO PARA JEFES DE AREA TRABAJO SEGURO EN ALTURAS', 'Solicito la apertura de un nuevo programa de trabajo seguro en alturas.', 'Media', 'cerrado', NULL, '2023-10-02', '2023-10-02', 2),
+(3, 3, 'Solicitud de cupos para COORDINADOR DE TRABAJO SEGURO EN ALTURAS', 'Necesito 3 cupos para el curso de coordinador de trabajo seguro en alturas.', 'Alta', 'en progreso', NULL, '2023-10-03', '2023-10-03', 3),
+(4, 4, 'Solicitud de cupos para RESCATE INDUSTRIAL EN TRABAJO EN ALTURAS', 'Necesito 2 cupos para el curso de rescate industrial en trabajo en alturas.', 'Alta', 'abierto', NULL, '2023-10-04', '2023-10-04', 4),
+(5, 5, 'Solicitud de cupos para TRABAJADOR AUTORIZADO PARA TRABAJO EN ALTURAS', 'Necesito 4 cupos para el curso de trabajador autorizado para trabajo en alturas.', 'Media', 'cerrado', NULL, '2023-10-05', '2023-10-05', 5),
+(6, 1, 'Solicitud de cupos para COORDINADOR DE TRABAJO EN ALTURAS', 'Necesito 6 cupos para el curso de coordinador de trabajo en alturas.', 'Alta', 'en progreso', NULL, '2023-10-06', '2023-10-06', 6),
+(7, 2, 'Solicitud de cupos para REENTRENAMIENTO EN TRABAJO EN ALTURAS PARA TRABAJADOR AUTORIZADO', 'Necesito 2 cupos para el curso de reentrenamiento en trabajo en alturas.', 'Alta', 'abierto', NULL, '2023-10-07', '2023-10-07', 7),
+(8, 3, 'Solicitud de cupos para ACTUALIZACION DE COORDINADORES PARA TRABAJO EN ALTURAS', 'Necesito 3 cupos para el curso de actualización de coordinadores.', 'Media', 'cerrado', NULL, '2023-10-08', '2023-10-08', 8),
+(9, 4, 'Solicitud de cupos para ACTUALIZACION DE ENTRENADORES PARA TRABAJO EN ALTURAS', 'Necesito 4 cupos para el curso de actualización de entrenadores.', 'Alta', 'en progreso', NULL, '2023-10-09', '2023-10-09', 9),
+(10, 5, 'Solicitud de cupos para ENTRENADOR PARA TRABAJO EN ALTURAS', 'Necesito 5 cupos para el curso de entrenador para trabajo en alturas.', 'Alta', 'abierto', NULL, '2023-10-10', '2023-10-10', 10),
+(11, 1, 'Solicitud de cupos para FORMADOR DE ENTRENADORES PARA TRABAJO EN ALTURAS', 'Necesito 2 cupos para el curso de formador de entrenadores.', 'Media', 'cerrado', NULL, '2023-10-11', '2023-10-11', 11),
+(12, 2, 'Solicitud de cupos para JEFES DE AREA PARA TRABAJO EN ALTURAS', 'Necesito 3 cupos para el curso de jefes de área.', 'Alta', 'en progreso', NULL, '2023-10-12', '2023-10-12', 12),
+(13, 3, 'Solicitud de cupos para INSPECTOR DE CENTROS DE FORMACION Y ENTRENAMIENTO PARA TRABAJO EN ALTURAS Y ESPACIOS CONFINADOS', 'Necesito 4 cupos para el curso de inspector de centros de formación.', 'Alta', 'abierto', NULL, '2023-10-13', '2023-10-13', 13),
+(14, 4, 'Solicitud de cupos para ACONDICIONAMIENTO DE ANDAMIOS PARA TRABAJO EN ALTURAS', 'Necesito 5 cupos para el curso de acondicionamiento de andamios.', 'Media', 'cerrado', NULL, '2023-10-14', '2023-10-14', 14);
 
 -- Volcado de datos para la tabla `Comentario`
 INSERT INTO Comentario (id_comentario, id_ticket, id_usuario, comentario, fecha_comentario) VALUES
