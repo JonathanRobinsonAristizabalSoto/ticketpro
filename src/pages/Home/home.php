@@ -15,13 +15,12 @@ if (isset($_POST['cerrar_sesion'])) {
 }
 
 // Consulta SQL para obtener el nombre y el documento del usuario
-$consulta = "SELECT nombre, documento, id_usuario FROM usuarios WHERE documento = ?";
+$consulta = "SELECT nombre, documento FROM usuarios WHERE documento = ?";
 if ($stmt = $conexion->prepare($consulta)) {
     $stmt->bind_param("s", $_SESSION['documento']);
     $stmt->execute();
-    $stmt->bind_result($nombre, $documento, $id_usuario);
+    $stmt->bind_result($nombre, $documento);
     $stmt->fetch();
-    $_SESSION['id_usuario'] = $id_usuario; // Guardar el id_usuario en la sesión
     $stmt->close();
 } else {
     die("Error en la consulta: " . $conexion->error);

@@ -7,7 +7,7 @@ $sql_tickets_recientes = "SELECT t.id_ticket, t.numero_ticket, t.tipo_de_solicit
                           JOIN Usuarios u ON t.id_usuario = u.id_usuario 
                           LEFT JOIN Usuarios a ON t.id_agente = a.id_usuario 
                           ORDER BY t.id_ticket DESC 
-                          LIMIT 10";
+                          LIMIT 100";
 $result_tickets_recientes = $conexion->query($sql_tickets_recientes);
 
 $output = '';
