@@ -77,7 +77,7 @@ if ($stmt = $conexion->prepare($consulta)) {
                     <select id="programa" name="programa" required></select>
                     <label for="descripcion">Descripción:</label>
                     <textarea id="descripcion" name="descripcion" required></textarea>
-                    
+
                     <button type="submit">Crear</button>
                 </form>
             </section>
