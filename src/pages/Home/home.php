@@ -39,11 +39,11 @@ if ($stmt = $conexion->prepare($consulta)) {
     <link rel="stylesheet" href="../../../assets/css/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Incluir CSS de DataTables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
     <!-- Incluir jQuery y JS de DataTables -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -70,10 +70,9 @@ if ($stmt = $conexion->prepare($consulta)) {
     <main>
         <h3>Bienvenido a TicketPro+</h3>
         <div class="dashboard">
-
             <!-- Estados de Tickets -->
             <section class="module estados">
-                <h4>Estados de Tickets</h4>
+                <h4 class="titulos_tablas">Estados de Tickets</h4>
                 <div class="estados-container" id="estados-container">
                     <div class="estado ticket-abierto">
                         <h5>Tickets Abiertos</h5>
@@ -100,8 +99,9 @@ if ($stmt = $conexion->prepare($consulta)) {
 
             <!-- Crear Nuevo Ticket -->
             <section class="module">
-                <h4>Crear Nuevo Ticket</h4>
+                <h4 class="titulos_tablas">Crear Nuevo Ticket</h4>
                 <form id="nueva-solicitud-form" method="POST" action="crear_ticket.php">
+                    <!-- Formulario -->
                     <label for="tipo_solicitud">Tipo de solicitud:</label>
                     <select id="tipo_solicitud" name="tipo_solicitud" required>
                         <option value="" disabled selected>Seleccione una opción</option>
@@ -116,10 +116,10 @@ if ($stmt = $conexion->prepare($consulta)) {
                     </select>
 
                     <label for="tipo_de_formacion">Tipo de formación:</label>
-                    <input type="text" id="tipo_de_formacion" name="tipo_de_formacion" readonly placeholder="Se llenará automáticamente">
+                    <input type="text" id="tipo_de_formacion" name="tipo_de_formacion" readonly>
 
                     <label for="modalidad">Modalidad:</label>
-                    <input type="text" id="modalidad" name="modalidad" readonly placeholder="Se llenará automáticamente">
+                    <input type="text" id="modalidad" name="modalidad" readonly>
 
                     <label for="descripcion">Descripción:</label>
                     <textarea id="descripcion" name="descripcion" placeholder="Ingrese una descripción" required></textarea>
@@ -138,8 +138,8 @@ if ($stmt = $conexion->prepare($consulta)) {
 
             <!-- Tickets Recientes -->
             <section class="module tickets-recientes">
-                <h4>Tickets Recientes</h4>
-                <table id="miTabla" class="display">
+                <h4 class="titulos_tablas">Historial de Tickets</h4>
+                <table id="miTablaTickets" class="display">
                     <thead>
                         <tr>
                             <th>ID ticket</th>
@@ -162,8 +162,8 @@ if ($stmt = $conexion->prepare($consulta)) {
 
             <!-- Programas -->
             <section class="module programas">
-                <h4>Programas</h4>
-                <table>
+                <h4 class="titulos_tablas">Programas</h4>
+                <table id="miTablaProgramas" class="display">
                     <thead>
                         <tr>
                             <th>Código</th>
@@ -189,73 +189,142 @@ if ($stmt = $conexion->prepare($consulta)) {
     </footer>
 
     <script>
-        $(document).ready(function() {
-            // Cargar estados de tickets
-            $.ajax({
-                url: 'get_estados.php',
-                method: 'GET',
-                success: function(data) {
-                    $('#estados-container').html(data);
-                },
-                error: function() {
-                    alert("Error al cargar los estados de los tickets.");
-                }
-            });
+    $(document).ready(function() {
+        // Función para manejar errores de AJAX
+        function handleError(message) {
+            alert(message);
+        }
 
-            // Cargar tickets recientes
-            $.ajax({
-                url: 'get_tickets_recientes.php',
-                method: 'GET',
-                success: function(data) {
-                    $('#tickets-recientes-list').html(data);
-                },
-                error: function() {
-                    alert("Error al cargar los tickets recientes.");
-                }
-            });
+        // Cargar estados de tickets
+        $.ajax({
+            url: 'get_estados.php',
+            method: 'GET',
+            success: function(data) {
+                $('#estados-container').html(data);
+            },
+            error: function() {
+                handleError("Error al cargar los estados de los tickets.");
+            }
+        });
 
-            // Cargar programas
-            $.ajax({
-                url: 'get_programas.php',
-                method: 'GET',
-                success: function(data) {
-                    var programas = JSON.parse(data);
-                    $('#programas-list').html(programas.lista);
-                    $('#programa').html('<option value="" disabled selected>Seleccione un programa</option>' + programas.opciones);
-                },
-                error: function() {
-                    alert("Error al cargar los programas.");
-                }
-            });
-
-            // Inicializar DataTable con traducción en español
-            $('#miTabla').DataTable({
-                language: {
-                    "sEmptyTable": "No hay datos disponibles en la tabla",
-                    "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                    "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
-                    "sInfoFiltered": "(filtrado de _MAX_ entradas en total)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ",",
-                    "sLengthMenu": "Mostrar _MENU_ entradas",
-                    "sLoadingRecords": "Cargando...",
-                    "sProcessing": "Procesando...",
-                    "sSearch": "Buscar:",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": activar para ordenar la columna de manera descendente"
+        // Cargar tickets recientes
+        $.ajax({
+            url: 'get_tickets_recientes.php',
+            method: 'GET',
+            success: function(data) {
+                $('#tickets-recientes-list').html(data);
+                $('#miTablaTickets').DataTable({
+                    pageLength: 5,
+                    language: {
+                        "sEmptyTable": "No hay datos disponibles en la tabla",
+                        "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                        "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                        "sInfoFiltered": "(filtrado de _MAX_ entradas en total)",
+                        "sLengthMenu": "Mostrar _MENU_ entradas",
+                        "sLoadingRecords": "Cargando...",
+                        "sProcessing": "Procesando...",
+                        "sSearch": "Buscar:",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        }
                     }
+                });
+            },
+            error: function() {
+                handleError("Error al cargar los tickets recientes.");
+            }
+        });
+
+        // Cargar programas
+        $.ajax({
+            url: 'get_programas.php',
+            method: 'GET',
+            success: function(data) {
+                var programas = JSON.parse(data);
+                $('#programas-list').html(programas.lista);
+                $('#programa').html('<option value="" disabled selected>Seleccione un programa</option>' + programas.opciones);
+                $('#miTablaProgramas').DataTable({
+                    pageLength: 5,
+                    language: {
+                        "sEmptyTable": "No hay datos disponibles en la tabla",
+                        "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                        "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                        "sInfoFiltered": "(filtrado de _MAX_ entradas en total)",
+                        "sLengthMenu": "Mostrar _MENU_ entradas",
+                        "sLoadingRecords": "Cargando...",
+                        "sProcessing": "Procesando...",
+                        "sSearch": "Buscar:",
+                        "sZeroRecords": "No se encontraron resultados",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        }
+                    }
+                });
+            },
+            error: function() {
+                handleError("Error al cargar los programas.");
+            }
+        });
+
+        // Actualizar campos ocultos al seleccionar un programa
+        $('#programa').change(function() {
+            var selectedOption = $(this).find('option:selected');
+            $('#tipo_de_formacion').val(selectedOption.data('tipo'));
+            $('#modalidad').val(selectedOption.data('modalidad'));
+        });
+
+        // Crear nuevo ticket
+        $('#nueva-solicitud-form').submit(function(event) {
+            event.preventDefault();
+            var tipo_solicitud = $('#tipo_solicitud').val();
+            var programa = $('#programa').val();
+            var tipo_de_formacion = $('#tipo_de_formacion').val();
+            var modalidad = $('#modalidad').val();
+            var descripcion = $('#descripcion').val();
+            var prioridad = $('#prioridad').val();
+
+            $.ajax({
+                url: 'crear_ticket.php',
+                method: 'POST',
+                data: {
+                    tipo_solicitud: tipo_solicitud,
+                    programa: programa,
+                    tipo_de_formacion: tipo_de_formacion,
+                    modalidad: modalidad,
+                    descripcion: descripcion,
+                    prioridad: prioridad
+                },
+                success: function(response) {
+                    alert('Ticket creado exitosamente');
+                    $('#nueva-solicitud-form')[0].reset();
+                    // Recargar tickets recientes
+                    $.ajax({
+                        url: 'get_tickets_recientes.php',
+                        method: 'GET',
+                        success: function(data) {
+                            $('#tickets-recientes-list').html(data);
+                        },
+                        error: function() {
+                            handleError("Error al recargar los tickets recientes.");
+                        }
+                    });
+                },
+                error: function() {
+                    handleError("Error al crear el ticket.");
                 }
             });
         });
-    </script>
+    });
+</script>
+
+    
 </body>
 
 </html>
