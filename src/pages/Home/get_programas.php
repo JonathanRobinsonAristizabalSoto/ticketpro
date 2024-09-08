@@ -1,7 +1,7 @@
 <?php
 include '../../conections/config.php';
 
-$sql_programas = "SELECT codigo, version, tipo_de_formacion, nombre, nivel_de_formacion, duracion, linea_tecnologica, red_tecnologica, red_de_conocimiento, modalidad FROM Programas";
+$sql_programas = "SELECT id_programa, codigo, version, tipo_de_formacion, nombre, nivel_de_formacion, duracion, linea_tecnologica, red_tecnologica, red_de_conocimiento, modalidad FROM Programas";
 $result_programas = $conexion->query($sql_programas);
 
 $lista_programas = '';
@@ -20,7 +20,7 @@ while ($row = $result_programas->fetch_assoc()) {
         <td>' . $row['red_de_conocimiento'] . '</td>
         <td>' . $row['modalidad'] . '</td>
     </tr>';
-    $opciones_programas .= '<option value="' . $row['codigo'] . '">' . $row['nombre'] . '</option>';
+    $opciones_programas .= '<option value="' . $row['id_programa'] . '" data-tipo="' . $row['tipo_de_formacion'] . '" data-modalidad="' . $row['modalidad'] . '">' . $row['nombre'] . '</option>';
 }
 
 echo json_encode([

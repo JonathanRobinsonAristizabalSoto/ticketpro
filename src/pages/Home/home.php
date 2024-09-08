@@ -15,12 +15,13 @@ if (isset($_POST['cerrar_sesion'])) {
 }
 
 // Consulta SQL para obtener el nombre y el documento del usuario
-$consulta = "SELECT nombre, documento FROM usuarios WHERE documento = ?";
+$consulta = "SELECT nombre, documento, id_usuario FROM usuarios WHERE documento = ?";
 if ($stmt = $conexion->prepare($consulta)) {
     $stmt->bind_param("s", $_SESSION['documento']);
     $stmt->execute();
-    $stmt->bind_result($nombre, $documento);
+    $stmt->bind_result($nombre, $documento, $id_usuario);
     $stmt->fetch();
+    $_SESSION['id_usuario'] = $id_usuario; // Guardar el id_usuario en la sesión
     $stmt->close();
 } else {
     die("Error en la consulta: " . $conexion->error);
@@ -63,24 +64,6 @@ if ($stmt = $conexion->prepare($consulta)) {
     <main>
         <h3>Bienvenido a TicketPro+</h3>
         <div class="dashboard">
-            <!-- Crear Nuevo Ticket -->
-            <section class="module">
-                <h4>Crear Nuevo Ticket</h4>
-                <form id="nueva-solicitud-form">
-                    <label for="tipo_solicitud">Tipo de solicitud:</label>
-                    <select id="tipo_solicitud" name="tipo_solicitud" required>
-                        <option value="Formacion">FORMACION</option>
-                        <option value="Consulta">CONSULTA</option>
-                        <option value="Certificacion">CERTIFICACIÓN DE COMPETENCIAS LABORALES</option>
-                    </select>
-                    <label for="programa">Programa:</label>
-                    <select id="programa" name="programa" required></select>
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" required></textarea>
-
-                    <button type="submit">Crear</button>
-                </form>
-            </section>
 
             <!-- Estados de Tickets -->
             <section class="module estados">
@@ -109,20 +92,65 @@ if ($stmt = $conexion->prepare($consulta)) {
                 </div>
             </section>
 
+            <!-- Crear Nuevo Ticket -->
+            <section class="module">
+                <h4>Crear Nuevo Ticket</h4>
+                <form id="nueva-solicitud-form" method="POST" action="crear_ticket.php">
+                    <label for="tipo_solicitud">Tipo de solicitud:</label>
+                    <select id="tipo_solicitud" name="tipo_solicitud" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Formacion">Formación</option>
+                        <option value="Consulta">Consulta</option>
+                        <option value="Certificacion">Certificación</option>
+                    </select>
+
+                    <label for="programa">Programa:</label>
+                    <select id="programa" name="programa" required>
+                        <option value="" disabled selected>Seleccione un programa</option>
+                    </select>
+
+                    <label for="tipo_de_formacion">Tipo de formación:</label>
+                    <input type="text" id="tipo_de_formacion" name="tipo_de_formacion" readonly placeholder="Se llenará automáticamente">
+
+                    <label for="modalidad">Modalidad:</label>
+                    <input type="text" id="modalidad" name="modalidad" readonly placeholder="Se llenará automáticamente">
+
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" placeholder="Ingrese una descripción" required></textarea>
+
+                    <label for="prioridad">Prioridad:</label>
+                    <select id="prioridad" name="prioridad" required>
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="Alta">Alta</option>
+                        <option value="Media">Media</option>
+                        <option value="Baja">Baja</option>
+                    </select>
+
+                    <button type="submit">Crear</button>
+                </form>
+            </section>
+
             <!-- Tickets Recientes -->
             <section class="module tickets-recientes">
                 <h4>Tickets Recientes</h4>
                 <table>
                     <thead>
                         <tr>
+                            <th>ID ticket</th>
                             <th>ID</th>
+                            <th>Tipo de Solicitud</th>
                             <th>Título</th>
+                            <th>Descripción</th>
                             <th>Estado</th>
+                            <th>Prioridad</th>
+                            <th>Solicitado por</th>
+                            <th>Asignado a</th>
                             <th>Fecha de Creación</th>
-                            <th>Usuario</th>
                         </tr>
                     </thead>
-                    <tbody id="tickets-recientes-list"></tbody>
+                    <tbody id="tickets-recientes-list">
+                        <?php include 'get_tickets_recientes.php'; ?>
+                    </tbody>
                 </table>
             </section>
 
@@ -181,24 +209,39 @@ if ($stmt = $conexion->prepare($consulta)) {
                 success: function(data) {
                     var programas = JSON.parse(data);
                     $('#programas-list').html(programas.lista);
-                    $('#programa').html(programas.opciones);
+                    $('#programa').html('<option value="" disabled selected>Seleccione un programa</option>' + programas.opciones);
                 }
+            });
+
+            // Actualizar campos ocultos al seleccionar un programa
+            $('#programa').change(function() {
+                var selectedOption = $(this).find('option:selected');
+                console.log('Tipo de formación:', selectedOption.data('tipo')); // Verificación
+                console.log('Modalidad:', selectedOption.data('modalidad')); // Verificación
+                $('#tipo_de_formacion').val(selectedOption.data('tipo'));
+                $('#modalidad').val(selectedOption.data('modalidad'));
             });
 
             // Crear nuevo ticket
             $('#nueva-solicitud-form').submit(function(event) {
                 event.preventDefault();
-                var titulo = $('#titulo').val();
-                var descripcion = $('#descripcion').val();
+                var tipo_solicitud = $('#tipo_solicitud').val();
                 var programa = $('#programa').val();
+                var tipo_de_formacion = $('#tipo_de_formacion').val();
+                var modalidad = $('#modalidad').val();
+                var descripcion = $('#descripcion').val();
+                var prioridad = $('#prioridad').val();
 
                 $.ajax({
                     url: 'crear_ticket.php',
                     method: 'POST',
                     data: {
-                        titulo: titulo,
+                        tipo_solicitud: tipo_solicitud,
+                        programa: programa,
+                        tipo_de_formacion: tipo_de_formacion,
+                        modalidad: modalidad,
                         descripcion: descripcion,
-                        programa: programa
+                        prioridad: prioridad
                     },
                     success: function(response) {
                         alert('Ticket creado exitosamente');
