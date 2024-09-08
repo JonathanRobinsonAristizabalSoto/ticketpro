@@ -1,4 +1,5 @@
 <?php
+// Ubicación del archivo: ../../conections/config.php
 include '../../conections/config.php';
 
 session_start();
@@ -40,16 +41,13 @@ if ($stmt = $conexion->prepare($consulta)) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 
     <!-- Incluir CSS de DataTables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
     <!-- Incluir jQuery y JS de DataTables -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body>
@@ -59,8 +57,8 @@ if ($stmt = $conexion->prepare($consulta)) {
         </a>
         <section class="textos-header">
             <h1 class="titulo1">TicketPro+</h1>
-            <p>¡Hola, <?php echo $nombre; ?>!</p>
-            <p>Documento: <?php echo $documento; ?></p>
+            <p>¡Hola, <?php echo htmlspecialchars($nombre); ?>!</p>
+            <p>Documento: <?php echo htmlspecialchars($documento); ?></p>
         </section>
         <nav>
             <form action="" method="post">
@@ -198,6 +196,9 @@ if ($stmt = $conexion->prepare($consulta)) {
                 method: 'GET',
                 success: function(data) {
                     $('#estados-container').html(data);
+                },
+                error: function() {
+                    alert("Error al cargar los estados de los tickets.");
                 }
             });
 
@@ -207,6 +208,9 @@ if ($stmt = $conexion->prepare($consulta)) {
                 method: 'GET',
                 success: function(data) {
                     $('#tickets-recientes-list').html(data);
+                },
+                error: function() {
+                    alert("Error al cargar los tickets recientes.");
                 }
             });
 
@@ -218,65 +222,39 @@ if ($stmt = $conexion->prepare($consulta)) {
                     var programas = JSON.parse(data);
                     $('#programas-list').html(programas.lista);
                     $('#programa').html('<option value="" disabled selected>Seleccione un programa</option>' + programas.opciones);
+                },
+                error: function() {
+                    alert("Error al cargar los programas.");
                 }
             });
 
-            // Actualizar campos ocultos al seleccionar un programa
-            $('#programa').change(function() {
-                var selectedOption = $(this).find('option:selected');
-                console.log('Tipo de formación:', selectedOption.data('tipo')); // Verificación
-                console.log('Modalidad:', selectedOption.data('modalidad')); // Verificación
-                $('#tipo_de_formacion').val(selectedOption.data('tipo'));
-                $('#modalidad').val(selectedOption.data('modalidad'));
-            });
-
-            // Crear nuevo ticket
-            $('#nueva-solicitud-form').submit(function(event) {
-                event.preventDefault();
-                var tipo_solicitud = $('#tipo_solicitud').val();
-                var programa = $('#programa').val();
-                var tipo_de_formacion = $('#tipo_de_formacion').val();
-                var modalidad = $('#modalidad').val();
-                var descripcion = $('#descripcion').val();
-                var prioridad = $('#prioridad').val();
-
-                $.ajax({
-                    url: 'crear_ticket.php',
-                    method: 'POST',
-                    data: {
-                        tipo_solicitud: tipo_solicitud,
-                        programa: programa,
-                        tipo_de_formacion: tipo_de_formacion,
-                        modalidad: modalidad,
-                        descripcion: descripcion,
-                        prioridad: prioridad
-                    },
-                    success: function(response) {
-                        alert('Ticket creado exitosamente');
-                        $('#nueva-solicitud-form')[0].reset();
-                        // Recargar tickets recientes
-                        $.ajax({
-                            url: 'get_tickets_recientes.php',
-                            method: 'GET',
-                            success: function(data) {
-                                $('#tickets-recientes-list').html(data);
-                            }
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
+            // Inicializar DataTable con traducción en español
             $('#miTabla').DataTable({
-                "paging": true, // Habilitar paginación
-                "lengthMenu": [5, 10, 20], // Número de filas por página
-                "searching": false, // Deshabilitar búsqueda (opcional)
-                "ordering": true // Habilitar ordenación (opcional)
+                language: {
+                    "sEmptyTable": "No hay datos disponibles en la tabla",
+                    "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                    "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                    "sInfoFiltered": "(filtrado de _MAX_ entradas en total)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ",",
+                    "sLengthMenu": "Mostrar _MENU_ entradas",
+                    "sLoadingRecords": "Cargando...",
+                    "sProcessing": "Procesando...",
+                    "sSearch": "Buscar:",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": activar para ordenar la columna de manera descendente"
+                    }
+                }
             });
         });
-        
     </script>
 </body>
 
