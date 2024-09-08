@@ -41,6 +41,15 @@ if ($stmt = $conexion->prepare($consulta)) {
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <!-- Incluir CSS de DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+    <!-- Incluir jQuery y JS de DataTables -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
 </head>
 
 <body>
@@ -132,7 +141,7 @@ if ($stmt = $conexion->prepare($consulta)) {
             <!-- Tickets Recientes -->
             <section class="module tickets-recientes">
                 <h4>Tickets Recientes</h4>
-                <table>
+                <table id="miTabla" class="display">
                     <thead>
                         <tr>
                             <th>ID ticket</th>
@@ -257,6 +266,17 @@ if ($stmt = $conexion->prepare($consulta)) {
                 });
             });
         });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#miTabla').DataTable({
+                "paging": true, // Habilitar paginación
+                "lengthMenu": [5, 10, 20], // Número de filas por página
+                "searching": false, // Deshabilitar búsqueda (opcional)
+                "ordering": true // Habilitar ordenación (opcional)
+            });
+        });
+        
     </script>
 </body>
 
