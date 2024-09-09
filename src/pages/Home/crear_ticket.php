@@ -1,9 +1,9 @@
 <?php
-include '../../connections/config.php';
+include '../../../src/connections/config.php';
 
 session_start();
 if (!isset($_SESSION['documento']) || !isset($_SESSION['id_usuario'])) {
-    header("Location: ../../index.php");
+    header("Location: ../Auth/login.php");
     exit;
 }
 
@@ -54,7 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->fetch();
         $stmt->close();
     } else {
-        die("Error en la consulta del programa: " . $conexion->error);
+        $error_message = "Error en la consulta del programa: " . $conexion->error;
+        file_put_contents('../../../logs/app.log', $error_message . "\n", FILE_APPEND);
+        die($error_message);
     }
 
     // Obtener el ID de la tipología seleccionada
@@ -66,24 +68,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->fetch();
         $stmt->close();
     } else {
-        die("Error en la consulta de la tipología: " . $conexion->error);
+        $error_message = "Error en la consulta de la tipología: " . $conexion->error;
+        file_put_contents('../../../logs/app.log', $error_message . "\n", FILE_APPEND);
+        die($error_message);
     }
 
     // Generar número de ticket único
     $numero_ticket = generarNumeroTicket($conexion);
 
     // Depuración: Imprimir valores antes de la inserción
-    error_log("Numero Ticket: $numero_ticket");
-    error_log("Tipo Solicitud: $tipo_solicitud");
-    error_log("Tipologia: $tipologia");
-    error_log("Descripcion: $descripcion");
-    error_log("Prioridad: $prioridad");
-    error_log("Estado: $estado");
-    error_log("ID Usuario: $id_usuario");
-    error_log("ID Programa: $programa");
-    error_log("ID Tipologia: $id_tipologia");
-    error_log("Fecha Creacion: $fecha_creacion");
-    error_log("Fecha Actualizacion: $fecha_actualizacion");
+    $log_message = "Numero Ticket: $numero_ticket\n";
+    $log_message .= "Tipo Solicitud: $tipo_solicitud\n";
+    $log_message .= "Tipologia: $tipologia\n";
+    $log_message .= "Descripcion: $descripcion\n";
+    $log_message .= "Prioridad: $prioridad\n";
+    $log_message .= "Estado: $estado\n";
+    $log_message .= "ID Usuario: $id_usuario\n";
+    $log_message .= "ID Programa: $programa\n";
+    $log_message .= "ID Tipologia: $id_tipologia\n";
+    $log_message .= "Fecha Creacion: $fecha_creacion\n";
+    $log_message .= "Fecha Actualizacion: $fecha_actualizacion\n";
+    file_put_contents('../../../logs/app.log', $log_message, FILE_APPEND);
 
     // Insertar el nuevo ticket en la base de datos
     $sql_insertar = "INSERT INTO Ticket (numero_ticket, tipo_de_solicitud, tipologia, descripcion, prioridad, estado, id_usuario, id_programa, id_tipologia, fecha_creacion, fecha_actualizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -92,12 +97,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($stmt->execute()) {
             echo "Ticket creado exitosamente";
         } else {
-            error_log("Error al crear el ticket: " . $stmt->error);
-            echo "Error al crear el ticket: " . $stmt->error;
+            $error_message = "Error al crear el ticket: " . $stmt->error;
+            file_put_contents('../../../logs/app.log', $error_message . "\n", FILE_APPEND);
+            echo $error_message;
         }
         $stmt->close();
     } else {
-        die("Error en la preparación de la consulta: " . $conexion->error);
+        $error_message = "Error en la preparación de la consulta: " . $conexion->error;
+        file_put_contents('../../../logs/app.log', $error_message . "\n", FILE_APPEND);
+        die($error_message);
     }
 }
 ?>

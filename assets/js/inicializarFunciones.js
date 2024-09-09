@@ -1,8 +1,13 @@
-$(document).ready(function() {
+function inicializarFunciones() {
+    // Otras inicializaciones
+    manejarFormularioNuevoTicket();
     cargarEstadosTickets();
     cargarTicketsRecientes();
     cargarProgramas();
     cargarTiposSolicitudYTipologias();
     actualizarCamposPrograma();
-    manejarFormularioNuevoTicket();
+}
+
+$(document).ready(function() {
+    inicializarFunciones();
 });

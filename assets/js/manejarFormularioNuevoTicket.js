@@ -21,7 +21,7 @@ function manejarFormularioNuevoTicket() {
 
         // Enviar datos al servidor para crear el ticket
         $.ajax({
-            url: '../../crear_ticket.php', // Ruta corregida
+            url: '../Home/crear_ticket.php', // Ruta corregida
             method: 'POST',
             data: {
                 tipo_solicitud: tipo_solicitud,
