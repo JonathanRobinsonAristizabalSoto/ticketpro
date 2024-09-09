@@ -27,7 +27,23 @@ header {
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Alinea verticalmente los elementos */
+    position: relative; /* Necesario para posicionar el título absolutamente */
+}
+
+.textos-header {
+    position: absolute; /* Posiciona el título absolutamente */
+    top: 50%; /* Mueve el título al 50% de la altura del header */
+    left: 50%; /* Mueve el título al 50% del ancho del header */
+    transform: translate(-50%, -50%); /* Centra el título vertical y horizontalmente */
+    display: flex;
+    align-items: center; /* Alinea verticalmente el contenido */
+    font-size: 1rem;
+    z-index: 1; /* Asegura que el título esté por encima de otros elementos */
+}
+
+.textos-header h1 {
+    margin: 0; /* Asegúrate de que no haya margen adicional */
 }
 
 .logo {
@@ -42,16 +58,6 @@ header {
 
 .logo img:hover {
     transform: scale(1.2) rotate(360deg);
-}
-
-.textos-header {
-    display: contents;
-    align-items: center;
-    font-size: 1rem;
-}
-
-.textos-header h1 {
-    margin-right: 20px;
 }
 
 nav {
@@ -114,19 +120,18 @@ h3 {
     margin-top: 10px;
 }
 
-.titulos_tablas{
+.titulos_tablas {
     color: var(--color-gris-oscuro);
     margin-bottom: 10px;
     font-size: 1.2rem;
     font-weight: 600;
 }
 
-option{
+option {
     font-family: "Poppins", sans-serif;
     font-size: 0.9rem; /* Tamaño de la fuente del placeholder */
     color: var(--color-gris-oscuro); /* Color del texto del placeholder */
 }
-
 
 /* Estilo para el placeholder del input con id modalidad */
 #tipo_de_formacion::placeholder {
@@ -333,7 +338,6 @@ footer {
     text-align: center;
 }
 
-
 /* Estilos generales del paginador */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     padding: 6px 12px !important; /* Espaciado interno del botón */
@@ -352,7 +356,6 @@ footer {
     background-color: var(--color-verde) !important; /* Color de fondo del botón activo */
     color: var(--color-blanco) !important; /* Color del texto del botón activo */
     border: 1px solid var(--color-verde) !important; /* Color del borde del botón activo */
-    
 }
 
 /* Estilos para el botón de paginación deshabilitado */
@@ -361,7 +364,6 @@ footer {
     color: var(--color-gris-oscuro) !important; /* Color del texto del botón deshabilitado */
     border: 1px solid var(--color-gris-claro) !important; /* Color del borde del botón deshabilitado */
     cursor: not-allowed !important; /* Cursor para el botón deshabilitado */
-    
 }
 
 /* Estilos para la información de la tabla */
@@ -434,7 +436,7 @@ table.dataTable.no-footer {
     border-bottom: none !important;
 }
 
-.dataTables_wrapper .dataTables_paginate{
+.dataTables_wrapper .dataTables_paginate {
     margin-top: 10px;
 }
 
@@ -446,4 +448,65 @@ tr.odd {
 /* Eliminar el color de fondo de las celdas con la clase .sorting_1 en las filas impares */
 .sorting_1 {
     background-color: transparent !important; /* Eliminar el color de fondo */
+}
+
+/* Estilos del contenedor principal */
+.contenedor_index {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra verticalmente el contenido */
+    min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+    text-align: center; /* Centra horizontalmente el texto */
+}
+
+/* Estilos para la sección de bienvenida */
+.Seccion_bienvenida {
+    background-color: var(--color-verde);
+    color: var(--color-blanco);
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center; /* Centra el texto */
+}
+
+.Seccion_bienvenida h2 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.Seccion_bienvenida p {
+    margin: 10px 0 0;
+    font-size: 1rem;
+}
+
+/* Estilos para la sección de información adicional */
+.seccion_informacion {
+    background-color: var(--color-gris-claro);
+    color: var(--color-gris-oscuro);
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center; /* Centra el texto */
+}
+
+.seccion_informacion h3 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+}
+
+.seccion_informacion p {
+    margin: 0;
+    font-size: 1rem;
 }

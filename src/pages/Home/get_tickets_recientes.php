@@ -1,11 +1,12 @@
 <?php
-include '../../conections/config.php';
+include '../../connections/config.php';
 
 // Consulta SQL para obtener los tickets recientes
-$sql_tickets_recientes = "SELECT t.id_ticket, t.numero_ticket, t.tipo_de_solicitud, t.titulo, t.descripcion, t.estado, t.prioridad, u.nombre AS solicitado_por, a.nombre AS asignado_a, t.fecha_creacion 
+$sql_tickets_recientes = "SELECT t.id_ticket, t.numero_ticket, t.tipo_de_solicitud, t.tipologia, p.nombre AS programa, t.descripcion, t.estado, t.prioridad, u.nombre AS solicitado_por, a.nombre AS asignado_a, t.fecha_creacion 
                           FROM Ticket t 
                           JOIN Usuarios u ON t.id_usuario = u.id_usuario 
                           LEFT JOIN Usuarios a ON t.id_agente = a.id_usuario 
+                          LEFT JOIN Programas p ON t.id_programa = p.id_programa
                           ORDER BY t.id_ticket DESC 
                           LIMIT 100";
 $result_tickets_recientes = $conexion->query($sql_tickets_recientes);
@@ -35,7 +36,8 @@ while ($row = $result_tickets_recientes->fetch_assoc()) {
     $output .= '<td>' . htmlspecialchars($row['id_ticket']) . '</td>';
     $output .= '<td>' . htmlspecialchars($row['numero_ticket']) . '</td>';
     $output .= '<td>' . htmlspecialchars($row['tipo_de_solicitud']) . '</td>';
-    $output .= '<td>' . htmlspecialchars($row['titulo']) . '</td>';
+    $output .= '<td>' . htmlspecialchars($row['tipologia']) . '</td>';
+    $output .= '<td>' . htmlspecialchars($row['programa']) . '</td>';
     $output .= '<td>' . htmlspecialchars($row['descripcion']) . '</td>';
     $output .= '<td class="' . $estado_clase . '">' . ucfirst(htmlspecialchars($row['estado'])) . '</td>';
     $output .= '<td>' . htmlspecialchars($row['prioridad']) . '</td>';

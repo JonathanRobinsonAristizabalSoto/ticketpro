@@ -1,5 +1,5 @@
 <?php
-include '../conections/config.php';
+include '../../connections/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tipo_documento = $_POST['typeDocument'];
@@ -81,7 +81,7 @@ $conexion->close();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - TicketPro+</title>
-    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="stylesheet" href="../../../assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -90,14 +90,14 @@ $conexion->close();
 
 <body>
     <header>
-        <a href="../../index.php" class="logo">
-            <img src="../../assets/images/logoticket.png" alt="TicketPro+ Logo">
+        <a href="../../../index.php" class="logo">
+            <img src="../../../assets/images/logoticket.png" alt="TicketPro+ Logo">
         </a>
         <section class="textos-header">
             <h1 class="titulo1">TicketPro+</h1>
         </section>
         <nav>
-            <a href="../../index.php" class="back-link"><i class="fas fa-arrow-left"></i></a>
+            <a href="./login.php" class="back-link"><i class="fas fa-arrow-left"></i></a>
         </nav>
     </header>
 
@@ -136,7 +136,7 @@ $conexion->close();
                 <label for="telefono">Teléfono:</label>
                 <input type="tel" id="telefono" name="telefono" required placeholder="Teléfono">
 
-                <?php include 'includes/departamentos.php'; ?>
+                <?php include '../../../src/includes/departamentos.php'; ?>
 
                 <!-- Campo de contraseña -->
                 <p>La contraseña debe tener al menos 6 caracteres, una letra mayúscula y un símbolo.</p>
@@ -157,7 +157,7 @@ $conexion->close();
                 <!-- Acciones del formulario -->
                 <div class="form-actions">
                     <button type="submit">Registrarse</button>
-                    <a href="../../index.php">Volver al inicio de sesión</a>
+                    <a href="../../../index.php">Volver al inicio de sesión</a>
                 </div>
             </form>
         </div>
