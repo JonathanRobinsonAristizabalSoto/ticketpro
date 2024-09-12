@@ -1,6 +1,5 @@
-/* tipos de fuente */
-/* font-family: "Lato", sans-serif; */
-/* font-family: "Poppins", sans-serif; */
+/* Tipos de fuente */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
 
 /* Variables de colores */
 :root {
@@ -11,6 +10,7 @@
     --color-gris-claro: #cccccc;
 }
 
+/* Estilos generales */
 body {
     font-family: "Poppins", sans-serif;
     margin: 0;
@@ -22,6 +22,7 @@ body {
     color: var(--color-gris-oscuro);
 }
 
+/* Estilos del encabezado */
 header {
     background-color: var(--color-verde);
     color: var(--color-blanco);
@@ -29,9 +30,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.3rem;
-    position: relative; /* Añadido para permitir el centrado absoluto del título */
-    
+    font-size: 1rem;
+    position: relative; /* Permite el centrado absoluto del título */
 }
 
 .logo {
@@ -70,6 +70,7 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/* Estilos del enlace de regreso */
 .back-link {
     color: var(--color-blanco);
     text-decoration: none;
@@ -94,6 +95,7 @@ nav a:hover {
     margin-right: 5px; /* Espacio entre el texto y el ícono */
 }
 
+/* Estilos del botón de sesión */
 #btn_sesion {
     background-color: var(--color-verde);
     border-radius: 5px;
@@ -109,6 +111,7 @@ nav a:hover {
     background-color: var(--color-gris);
 }
 
+/* Estilos del contenido principal */
 main {
     flex: 1;
     display: flex;
@@ -133,7 +136,7 @@ main {
 
 h1, h2 {
     color: var(--color-blanco);
-    margin-bottom: 20px;
+    margin: 5px;
 }
 
 form {
@@ -166,6 +169,7 @@ input, select {
     color: var(--color-gris-oscuro);
 }
 
+/* Estilos de los botones */
 button, .logout-button {
     font-size: 14px;
     margin: 10px;
@@ -182,6 +186,7 @@ button:hover, .logout-button:hover {
     background-color: var(--color-gris);
 }
 
+/* Estilos del pie de página */
 footer {
     background-color: var(--color-verde);
     color: var(--color-blanco);
@@ -190,6 +195,7 @@ footer {
     font-size: 0.875rem;
 }
 
+/* Estilos del contenedor de restablecimiento de contraseña */
 .password-reset-container {
     background-color: var(--color-gris-oscuro);
     padding: 20px;
@@ -206,21 +212,32 @@ footer {
     text-align: justify;
 }
 
+/* Estilos responsivos */
 @media (max-width: 768px) {
     .login-container, .register-container {
         margin: 10px;
         padding: 15px;
     }
-}
 
-.form-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.form-actions a {
-    margin-top: 10px;
+    .textos-header {
+        position: static;
+        transform: none;
+        text-align: center;
+    }
+
+    nav {
+        margin-right: 0;
+    }
+
+    nav a {
+        margin-left: 10px;
+        font-size: 14px;
+    }
 }
 
 /* Estilos para el fondo oscurecido */
@@ -256,6 +273,7 @@ footer {
     animation: slideIn 1s forwards, slideOut 1s 3s forwards; /* Aplica las animaciones */
 }
 
+/* Animaciones */
 @keyframes slideIn {
     0% {
         right: -100%; /* Comienza fuera de la pantalla a la derecha */

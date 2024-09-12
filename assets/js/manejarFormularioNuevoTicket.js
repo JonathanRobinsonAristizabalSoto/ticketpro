@@ -10,8 +10,14 @@ function manejarFormularioNuevoTicket() {
         var descripcion = $('#descripcion').val();
         var prioridad = $('#prioridad').val();
 
+        // Validación básica
+        if (!tipo_solicitud || !tipologia || !programa || !descripcion || !prioridad) {
+            alert('Por favor, complete todos los campos del formulario.');
+            return;
+        }
+
         // Verificar los datos antes de enviarlos
-        console.log({
+        console.log("Datos del formulario:", {
             tipo_solicitud: tipo_solicitud,
             tipologia: tipologia,
             programa: programa,
@@ -31,7 +37,7 @@ function manejarFormularioNuevoTicket() {
                 prioridad: prioridad
             },
             success: function(response) {
-                // Informar al usuario que el ticket fue creado exitosamente
+                console.log("Respuesta del servidor:", response);
                 alert('Ticket creado exitosamente');
 
                 // Resetear el formulario
@@ -40,8 +46,10 @@ function manejarFormularioNuevoTicket() {
                 // Cargar los tickets recientes
                 cargarTicketsRecientes();
             },
-            error: function() {
-                handleError("Error al crear el ticket.");
+            error: function(xhr, status, error) {
+                // Manejo de errores más detallado
+                console.error("Error al crear el ticket:", status, error);
+                alert('Error al crear el ticket. Por favor, intente de nuevo.');
             }
         });
     });

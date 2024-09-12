@@ -27,23 +27,23 @@ header {
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Alinea verticalmente los elementos */
-    position: relative; /* Necesario para posicionar el título absolutamente */
+    align-items: center;
+    position: relative;
 }
 
 .textos-header {
-    position: absolute; /* Posiciona el título absolutamente */
-    top: 50%; /* Mueve el título al 50% de la altura del header */
-    left: 50%; /* Mueve el título al 50% del ancho del header */
-    transform: translate(-50%, -50%); /* Centra el título vertical y horizontalmente */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
-    align-items: center; /* Alinea verticalmente el contenido */
+    align-items: center;
     font-size: 1rem;
-    z-index: 1; /* Asegura que el título esté por encima de otros elementos */
+    z-index: 1;
 }
 
 .textos-header h1 {
-    margin: 0; /* Asegúrate de que no haya margen adicional */
+    margin: 0;
 }
 
 .logo {
@@ -111,13 +111,12 @@ h3 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     width: 100%;
-    max-width: 1100px; /* Ajusta el ancho máximo según tus necesidades */
+    max-width: 1100px;
 }
 
 .module h4 {
     color: var(--color-gris-oscuro);
-    margin-bottom: 20px;
-    margin-top: 10px;
+    margin: 10px 0 20px;
 }
 
 .titulos_tablas {
@@ -127,42 +126,15 @@ h3 {
     font-weight: 600;
 }
 
-option {
-    font-family: "Poppins", sans-serif;
-    font-size: 0.9rem; /* Tamaño de la fuente del placeholder */
-    color: var(--color-gris-oscuro); /* Color del texto del placeholder */
-}
-
-/* Estilo para el placeholder del input con id modalidad */
-#tipo_de_formacion::placeholder {
-    font-size: 0.9rem; /* Tamaño de la fuente del placeholder */
-    color: var(--color-gris-oscuro); /* Color del texto del placeholder */
-    opacity: 1; /* Asegura que el color se aplique completamente */
-    font-family: "Poppins", sans-serif;
-}
-
-/* Estilo para el placeholder del input con id modalidad */
-#programa::placeholder {
-    font-size: 0.9rem; /* Tamaño de la fuente del placeholder */
-    color: var(--color-gris-oscuro); /* Color del texto del placeholder */
-    opacity: 1; /* Asegura que el color se aplique completamente */
-    font-family: "Poppins", sans-serif;
-}
-
-/* Estilo para el placeholder del input con id modalidad */
-#modalidad::placeholder {
-    font-size: 0.9rem; /* Tamaño de la fuente del placeholder */
-    color: var(--color-gris-oscuro); /* Color del texto del placeholder */
-    opacity: 1; /* Asegura que el color se aplique completamente */
-    font-family: "Poppins", sans-serif;
-}
-
-/* Estilo para el placeholder del textarea con id descripcion */
+option,
+#tipo_de_formacion::placeholder,
+#programa::placeholder,
+#modalidad::placeholder,
 #descripcion::placeholder {
-    font-size: 0.9rem; /* Tamaño de la fuente del placeholder */
-    color: var(--color-gris-oscuro); /* Color del texto del placeholder */
-    opacity: 1; /* Asegura que el color se aplique completamente */
     font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    color: var(--color-gris-oscuro);
+    opacity: 1;
 }
 
 /* Estilos del contenedor padre para centrar verticalmente */
@@ -171,7 +143,7 @@ option {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+    min-height: 100vh;
 }
 
 ul {
@@ -231,7 +203,7 @@ footer {
 /* Estilos para los estados de tickets */
 .estados-container {
     display: flex;
-    justify-content: center; /* Centra los elementos dentro del contenedor */
+    justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 20px;
 }
@@ -245,57 +217,11 @@ footer {
     text-align: center;
     flex: 1;
     min-width: 150px;
-    max-width: 300px; /* Ajusta este valor según tus necesidades */
+    max-width: 300px;
 }
 
 /* Estilos para la tabla de tickets recientes */
-.tickets-recientes table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.tickets-recientes th,
-.tickets-recientes td {
-    padding: 10px;
-    border: 1px solid var(--color-gris-claro);
-    text-align: center;
-    font-size: 0.8rem;
-}
-
-.tickets-recientes th {
-    background-color: var(--color-verde);
-    color: var(--color-blanco);
-    text-align: center;
-}
-
-/* Colores para los contenedores de tickets */
-.ticket-abierto {
-    background-color: var(--color-naranja);
-    color: var(--color-blanco);
-}
-
-.ticket-cerrado {
-    background-color: var(--color-verde);
-    color: var(--color-blanco);
-}
-
-.ticket-pendiente {
-    background-color: var(--color-gris-oscuro);
-    color: var(--color-blanco);
-}
-
-.ticket-progreso {
-    background-color: var(--color-gris);
-    color: var(--color-blanco);
-}
-
-.ticket-resuelto {
-    background-color: var(--color-gris-claro);
-    color: var(--color-gris);
-}
-
-/* Estilos para la tabla y lista de programas */
+.tickets-recientes table,
 .programas table {
     width: 100%;
     border-collapse: collapse;
@@ -303,6 +229,8 @@ footer {
     font-size: 0.8rem;
 }
 
+.tickets-recientes th,
+.tickets-recientes td,
 .programas th,
 .programas td {
     padding: 10px;
@@ -310,10 +238,10 @@ footer {
     text-align: center;
 }
 
+.tickets-recientes th,
 .programas th {
     background-color: var(--color-verde);
     color: var(--color-blanco);
-    text-align: center;
 }
 
 .programas td {
@@ -338,100 +266,118 @@ footer {
     text-align: center;
 }
 
+/* Colores para los contenedores de tickets */
+.ticket-abierto {
+    background-color: var(--color-naranja);
+    color: var(--color-blanco);
+}
+
+.ticket-cerrado,
+.ticket-pendiente,
+.ticket-progreso,
+.ticket-resuelto {
+    color: var(--color-blanco);
+}
+
+.ticket-cerrado {
+    background-color: var(--color-verde);
+}
+
+.ticket-pendiente {
+    background-color: var(--color-gris-oscuro);
+}
+
+.ticket-progreso {
+    background-color: var(--color-gris);
+}
+
+.ticket-resuelto {
+    background-color: var(--color-gris-claro);
+    color: var(--color-gris);
+}
+
 /* Estilos generales del paginador */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-    padding: 6px 12px !important; /* Espaciado interno del botón */
-    border: 1px solid var(--color-gris-claro) !important; /* Color del borde del botón */
-    border-radius: 5px !important; /* Bordes redondeados */
-    margin: 0 4px !important; /* Espaciado entre botones */
-    background-color: var(--color-blanco) !important; /* Color de fondo del botón */
-    color: var(--color-gris-oscuro) !important; /* Color del texto del botón */
-    cursor: pointer !important; /* Cambiar el cursor al pasar sobre el botón */
-    transition: background-color 0.3s, color 0.3s, border 0.3s !important; /* Transición suave */
+    padding: 6px 12px !important;
+    border: 1px solid var(--color-gris-claro) !important;
+    border-radius: 5px !important;
+    margin: 0 4px !important;
+    background-color: var(--color-blanco) !important;
+    color: var(--color-gris-oscuro) !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s, color 0.3s, border 0.3s !important;
     margin-top: 100px;
 }
 
-/* Estilos para el botón de paginación activo */
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background-color: var(--color-verde) !important; /* Color de fondo del botón activo */
-    color: var(--color-blanco) !important; /* Color del texto del botón activo */
-    border: 1px solid var(--color-verde) !important; /* Color del borde del botón activo */
+    background-color: var(--color-verde) !important;
+    color: var(--color-blanco) !important;
+    border: 1px solid var(--color-verde) !important;
 }
 
-/* Estilos para el botón de paginación deshabilitado */
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
-    background-color: var(--color-gris-claro) !important; /* Color de fondo del botón deshabilitado */
-    color: var(--color-gris-oscuro) !important; /* Color del texto del botón deshabilitado */
-    border: 1px solid var(--color-gris-claro) !important; /* Color del borde del botón deshabilitado */
-    cursor: not-allowed !important; /* Cursor para el botón deshabilitado */
+    background-color: var(--color-gris-claro) !important;
+    color: var(--color-gris-oscuro) !important;
+    border: 1px solid var(--color-gris-claro) !important;
+    cursor: not-allowed !important;
 }
 
-/* Estilos para la información de la tabla */
 .dataTables_wrapper .dataTables_info {
-    font-size: 0.9rem !important; /* Tamaño de fuente de la información */
-    color: var(--color-gris-oscuro) !important; /* Color del texto */
+    font-size: 0.9rem !important;
+    color: var(--color-gris-oscuro) !important;
     margin-top: 10px;
 }
 
-/* Estilos para el select de longitud de la tabla */
 .dataTables_wrapper .dataTables_length select {
-    padding: 8px !important; /* Espaciado interno del select */
-    border: 1px solid var(--color-gris-claro) !important; /* Color del borde del select */
-    border-radius: 5px !important; /* Bordes redondeados */
-    background-color: var(--color-blanco) !important; /* Color de fondo del select */
-    color: var(--color-gris-oscuro) !important; /* Color del texto del select */
+    padding: 8px !important;
+    border: 1px solid var(--color-gris-claro) !important;
+    border-radius: 5px !important;
+    background-color: var(--color-blanco) !important;
+    color: var(--color-gris-oscuro) !important;
 }
 
-/* Estilos para el input de filtro de la tabla */
 .dataTables_wrapper .dataTables_filter input {
-    padding: 8px !important; /* Espaciado interno del input */
-    border: 2px solid var(--color-verde) !important; /* Color del borde del input */
-    border-radius: 5px !important; /* Bordes redondeados */
-    background-color: var(--color-blanco) !important; /* Color de fondo del input */
-    color: var(--color-gris-oscuro) !important; /* Color del texto del input */
-    margin-bottom: 12px !important; /* Margen inferior del input */
+    padding: 8px !important;
+    border: 2px solid var(--color-verde) !important;
+    border-radius: 5px !important;
+    background-color: var(--color-blanco) !important;
+    color: var(--color-gris-oscuro) !important;
+    margin-bottom: 12px !important;
 }
 
-/* Estilos para el mensaje de procesamiento de la tabla */
 .dataTables_wrapper .dataTables_processing {
-    background-color: var(--color-gris-claro) !important; /* Color de fondo del mensaje de procesamiento */
-    color: var(--color-gris-oscuro) !important; /* Color del texto del mensaje de procesamiento */
-    padding: 12px !important; /* Espaciado interno del mensaje de procesamiento */
-    border-radius: 5px !important; /* Bordes redondeados */
-    font-size: 1rem !important; /* Tamaño de fuente del mensaje de procesamiento */
+    background-color: var(--color-gris-claro) !important;
+    color: var(--color-gris-oscuro) !important;
+    padding: 12px !important;
+    border-radius: 5px !important;
+    font-size: 1rem !important;
 }
 
-/* Estilos para el encabezado de la tabla */
-.dataTables_wrapper .dataTables_wrapper .dataTables_wrapper thead th {
-    background-color: var(--color-verde-claro) !important; /* Color de fondo del encabezado */
-    color: var(--color-blanco) !important; /* Color del texto del encabezado */
-    padding: 10px !important; /* Espaciado interno del encabezado */
-    text-align: center !important; /* Alinear texto al centro */
+.dataTables_wrapper .dataTables_wrapper thead th {
+    background-color: var(--color-verde-claro) !important;
+    color: var(--color-blanco) !important;
+    padding: 10px !important;
+    text-align: center !important;
 }
 
-/* Estilos para las celdas de la tabla */
-.dataTables_wrapper .dataTables_wrapper .dataTables_wrapper tbody td {
-    padding: 8px !important; /* Espaciado interno de las celdas */
-    border-bottom: 1px solid var(--color-gris-claro) !important; /* Color del borde inferior de las celdas */
+.dataTables_wrapper .dataTables_wrapper tbody td {
+    padding: 8px !important;
+    border-bottom: 1px solid var(--color-gris-claro) !important;
 }
 
-/* Estilos para la fila seleccionada */
-.dataTables_wrapper .dataTables_wrapper .dataTables_wrapper tbody tr.selected {
-    background-color: var(--color-verde-oscuro) !important; /* Color de fondo de la fila seleccionada */
-    color: var(--color-blanco) !important; /* Color del texto de la fila seleccionada */
+.dataTables_wrapper .dataTables_wrapper tbody tr.selected {
+    background-color: var(--color-verde-oscuro) !important;
+    color: var(--color-blanco) !important;
 }
 
-/* Estilos para la fila alternante */
-.dataTables_wrapper .dataTables_wrapper .dataTables_wrapper tbody tr:nth-child(even) {
-    background-color: var(--color-gris-ligero) !important; /* Color de fondo de las filas alternantes */
+.dataTables_wrapper .dataTables_wrapper tbody tr:nth-child(even) {
+    background-color: var(--color-gris-ligero) !important;
 }
 
-/* Estilos para el scroll horizontal */
 .dataTables_wrapper .dataTables_scroll .dataTables_scrollBody {
-    overflow-x: auto !important; /* Habilitar scroll horizontal */
+    overflow-x: auto !important;
 }
 
-/* Eliminar el borde inferior de la tabla con clases dataTable y no-footer */
 table.dataTable.no-footer {
     border-bottom: none !important;
 }
@@ -440,14 +386,12 @@ table.dataTable.no-footer {
     margin-top: 10px;
 }
 
-/* Sobrescribir el color de fondo de las filas impares en las tablas de DataTables */
 tr.odd {
-    background-color: transparent !important; /* Eliminar el color de fondo */
+    background-color: transparent !important;
 }
 
-/* Eliminar el color de fondo de las celdas con la clase .sorting_1 en las filas impares */
 .sorting_1 {
-    background-color: transparent !important; /* Eliminar el color de fondo */
+    background-color: transparent !important;
 }
 
 /* Estilos del contenedor principal */
@@ -455,25 +399,29 @@ tr.odd {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Centra verticalmente el contenido */
-    min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
-    text-align: center; /* Centra horizontalmente el texto */
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
 }
 
 /* Estilos para la sección de bienvenida */
-.Seccion_bienvenida {
-    background-color: var(--color-verde);
-    color: var(--color-blanco);
+.Seccion_bienvenida,
+.seccion_informacion {
     padding: 20px;
     border-radius: 5px;
-    margin-bottom: 20px;
     width: 100%;
     max-width: 1100px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra verticalmente */
-    align-items: center; /* Centra horizontalmente */
-    text-align: center; /* Centra el texto */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.Seccion_bienvenida {
+    background-color: var(--color-verde);
+    color: var(--color-blanco);
 }
 
 .Seccion_bienvenida h2 {
@@ -486,19 +434,9 @@ tr.odd {
     font-size: 1rem;
 }
 
-/* Estilos para la sección de información adicional */
 .seccion_informacion {
     background-color: var(--color-gris-claro);
     color: var(--color-gris-oscuro);
-    padding: 20px;
-    border-radius: 5px;
-    width: 100%;
-    max-width: 1100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra verticalmente */
-    align-items: center; /* Centra horizontalmente */
-    text-align: center; /* Centra el texto */
 }
 
 .seccion_informacion h3 {
@@ -509,4 +447,97 @@ tr.odd {
 .seccion_informacion p {
     margin: 0;
     font-size: 1rem;
+}
+
+/* Responsividad - Media Queries */
+
+/* Dispositivos móviles (pantallas menores a 600px) */
+@media (max-width: 600px) {
+    .textos-header {
+        font-size: 0.8rem;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        margin-left: 10px;
+    }
+
+    .module {
+        padding: 15px;
+    }
+
+    .Seccion_bienvenida h2 {
+        font-size: 1.5rem;
+    }
+
+    .Seccion_bienvenida p, 
+    .seccion_informacion p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Tabletas (pantallas entre 601px y 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+    header {
+        padding: 10px;
+    }
+
+    .logo {
+        margin-left: 10px;
+    }
+
+    .textos-header {
+        font-size: 0.9rem;
+    }
+
+    nav a {
+        font-size: 0.95rem;
+        margin-left: 15px;
+    }
+
+    .module {
+        max-width: 90%;
+    }
+
+    .Seccion_bienvenida h2 {
+        font-size: 1.75rem;
+    }
+
+    .Seccion_bienvenida p, 
+    .seccion_informacion p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Pantallas grandes (a partir de 901px) */
+@media (min-width: 901px) {
+    .textos-header {
+        font-size: 1.2rem;
+    }
+
+    .logo img {
+        height: 60px;
+    }
+
+    nav a {
+        font-size: 1.1rem;
+        margin-left: 25px;
+    }
+
+    .module {
+        max-width: 1200px;
+    }
+
+    .Seccion_bienvenida h2 {
+        font-size: 2.2rem;
+    }
+
+    .Seccion_bienvenida p, 
+    .seccion_informacion p {
+        font-size: 1.1rem;
+    }
 }
