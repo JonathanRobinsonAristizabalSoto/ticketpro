@@ -1,4 +1,4 @@
-<?php include '../Auth/session_user.php'; ?>
+<?php include '../Auth/auth_session.php'; ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -40,119 +40,135 @@
     </header>
 
     <main>
-        <h3>Bienvenido a TicketPro+</h3>
-        <div class="dashboard">
-            <!-- Estados de Tickets -->
-            <section class="module estados">
-                <h4 class="titulos_tablas">Estados de Tickets</h4>
-                <div class="estados-container" id="estados-container">
-                    <div class="estado ticket-abierto">
-                        <h5>Tickets Abiertos</h5>
-                        <p id="tickets-abiertos">0</p>
-                    </div>
-                    <div class="estado ticket-progreso">
-                        <h5>Tickets En Progreso</h5>
-                        <p id="tickets-progreso">0</p>
-                    </div>
-                    <div class="estado ticket-pendiente">
-                        <h5>Tickets Pendientes</h5>
-                        <p id="tickets-pendientes">0</p>
-                    </div>
-                    <div class="estado ticket-resuelto">
-                        <h5>Tickets Resueltos</h5>
-                        <p id="tickets-resueltos">0</p>
-                    </div>
-                    <div class="estado ticket-cerrado">
-                        <h5>Tickets Cerrados</h5>
-                        <p id="tickets-cerrados">0</p>
-                    </div>
+        <div class="container">
+            <!-- Panel Lateral -->
+            <aside class="sidebar">
+                <ul>
+                    <li><a href="usuarios.php">Usuarios</a></li>
+                    <li><a href="tipologias.php">Tipologías</a></li>
+                    <li><a href="programas.php">Programas</a></li>
+                    <li><a href="../Tickets/tickets.php">Tickets</a></li>
+                </ul>
+            </aside>
+
+            <!-- Contenido Principal -->
+            <div class="main-content">
+                <h3>Bienvenido a TicketPro+</h3>
+                <div class="dashboard">
+                    
+                    <!-- Estados de Tickets -->
+                    <section class="module estados">
+                        <h4 class="titulos_tablas">Estados de Tickets</h4>
+                        <div class="estados-container" id="estados-container">
+                            <div class="estado ticket-abierto">
+                                <h5>Tickets Abiertos</h5>
+                                <p id="tickets-abiertos">0</p>
+                            </div>
+                            <div class="estado ticket-progreso">
+                                <h5>Tickets En Progreso</h5>
+                                <p id="tickets-progreso">0</p>
+                            </div>
+                            <div class="estado ticket-pendiente">
+                                <h5>Tickets Pendientes</h5>
+                                <p id="tickets-pendientes">0</p>
+                            </div>
+                            <div class="estado ticket-resuelto">
+                                <h5>Tickets Resueltos</h5>
+                                <p id="tickets-resueltos">0</p>
+                            </div>
+                            <div class="estado ticket-cerrado">
+                                <h5>Tickets Cerrados</h5>
+                                <p id="tickets-cerrados">0</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Crear Nuevo Ticket -->
+                    <section class="module">
+                        <h4 class="titulos_tablas">Crear Nuevo Ticket</h4>
+                        <form id="nueva-solicitud-form" method="POST" action="crear_ticket.php">
+
+                            <!-- Formulario -->
+                            <label for="tipologia">Tipología:</label>
+                            <select id="tipologia" name="tipologia" required>
+                                <option value="" disabled selected>Seleccione una tipología</option>
+                            </select>
+
+                            <label for="subtipologia">Subtipología:</label>
+                            <select id="subtipologia" name="subtipologia" required>
+                                <option value="" disabled selected>Seleccione una subtipología</option>
+                            </select>
+
+                            <label for="programa">Programa:</label>
+                            <select id="programa" name="programa" required>
+                                <option value="" disabled selected>Seleccione un programa</option>
+                            </select>
+
+                            <label for="modalidad">Modalidad:</label>
+                            <input type="text" id="modalidad" name="modalidad" readonly>
+
+                            <label for="descripcion">Descripción:</label>
+                            <textarea id="descripcion" name="descripcion" placeholder="Ingrese una descripción" required></textarea>
+
+                            <label for="prioridad">Prioridad:</label>
+                            <select id="prioridad" name="prioridad" required>
+                                <option value="" disabled selected>Seleccione una opción</option>
+                                <option value="Alta">Alta</option>
+                                <option value="Media">Media</option>
+                                <option value="Baja">Baja</option>
+                            </select>
+
+                            <button type="submit">Crear</button>
+                        </form>
+                    </section>
+
+                    <!-- Tickets Recientes -->
+                    <section class="module tickets-recientes">
+                        <h4 class="titulos_tablas">Historial de Tickets</h4>
+                        <table id="miTablaTickets" class="display">
+                            <thead>
+                                <tr>
+                                    <th>ID ticket</th>
+                                    <th>ID</th>
+                                    <th>Tipología</th>
+                                    <th>Subtipología</th>
+                                    <th>Programa</th>
+                                    <th>Descripción</th>
+                                    <th>Estado</th>
+                                    <th>Prioridad</th>
+                                    <th>Solicitado por</th>
+                                    <th>Asignado a</th>
+                                    <th>Fecha de Creación</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tickets-recientes-list">
+                                <?php include 'get_tickets_recientes.php'; ?>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- Programas -->
+                    <section class="module programas">
+                        <h4 class="titulos_tablas">Programas</h4>
+                        <table id="miTablaProgramas" class="display">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Versión</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Duración</th>
+                                    <th>Línea Tecnológica</th>
+                                    <th>Red Tecnológica</th>
+                                    <th>Red de Conocimiento</th>
+                                    <th>Modalidad</th>
+                                </tr>
+                            </thead>
+                            <tbody id="programas-list"></tbody>
+                        </table>
+                    </section>
                 </div>
-            </section>
-
-            <!-- Crear Nuevo Ticket -->
-            <section class="module">
-                <h4 class="titulos_tablas">Crear Nuevo Ticket</h4>
-                <form id="nueva-solicitud-form" method="POST" action="crear_ticket.php">
-
-                    <!-- Formulario -->
-                    <label for="tipologia">Tipología:</label>
-                    <select id="tipologia" name="tipologia" required>
-                        <option value="" disabled selected>Seleccione una tipología</option>
-                    </select>
-
-                    <label for="subtipologia">Subtipología:</label>
-                    <select id="subtipologia" name="subtipologia" required>
-                        <option value="" disabled selected>Seleccione una subtipología</option>
-                    </select>
-
-                    <label for="programa">Programa:</label>
-                    <select id="programa" name="programa" required>
-                        <option value="" disabled selected>Seleccione un programa</option>
-                    </select>
-
-                    <label for="modalidad">Modalidad:</label>
-                    <input type="text" id="modalidad" name="modalidad" readonly>
-
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" placeholder="Ingrese una descripción" required></textarea>
-
-                    <label for="prioridad">Prioridad:</label>
-                    <select id="prioridad" name="prioridad" required>
-                        <option value="" disabled selected>Seleccione una opción</option>
-                        <option value="Alta">Alta</option>
-                        <option value="Media">Media</option>
-                        <option value="Baja">Baja</option>
-                    </select>
-
-                    <button type="submit">Crear</button>
-                </form>
-            </section>
-
-            <!-- Tickets Recientes -->
-            <section class="module tickets-recientes">
-                <h4 class="titulos_tablas">Historial de Tickets</h4>
-                <table id="miTablaTickets" class="display">
-                    <thead>
-                        <tr>
-                            <th>ID ticket</th>
-                            <th>ID</th>
-                            <th>Tipología</th>
-                            <th>Subtipología</th>
-                            <th>Programa</th>
-                            <th>Descripción</th>
-                            <th>Estado</th>
-                            <th>Prioridad</th>
-                            <th>Solicitado por</th>
-                            <th>Asignado a</th>
-                            <th>Fecha de Creación</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tickets-recientes-list">
-                        <?php include 'get_tickets_recientes.php'; ?>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- Programas -->
-            <section class="module programas">
-                <h4 class="titulos_tablas">Programas</h4>
-                <table id="miTablaProgramas" class="display">
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Versión</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Duración</th>
-                            <th>Línea Tecnológica</th>
-                            <th>Red Tecnológica</th>
-                            <th>Red de Conocimiento</th>
-                            <th>Modalidad</th>
-                        </tr>
-                    </thead>
-                    <tbody id="programas-list"></tbody>
-                </table>
-            </section>
+            </div>
         </div>
     </main>
 

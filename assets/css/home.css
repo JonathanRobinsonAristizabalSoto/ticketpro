@@ -220,9 +220,10 @@ footer {
     max-width: 300px;
 }
 
-/* Estilos para la tabla de tickets recientes */
+/* Estilos para las tablas de tickets */
 .tickets-recientes table,
-.programas table {
+.programas table,
+.mis-tickets table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
@@ -232,19 +233,23 @@ footer {
 .tickets-recientes th,
 .tickets-recientes td,
 .programas th,
-.programas td {
+.programas td,
+.mis-tickets th,
+.mis-tickets td {
     padding: 10px;
     border: 1px solid var(--color-gris-claro);
     text-align: center;
 }
 
 .tickets-recientes th,
-.programas th {
+.programas th,
+.mis-tickets th {
     background-color: var(--color-verde);
     color: var(--color-blanco);
 }
 
-.programas td {
+.programas td,
+.mis-tickets td {
     background-color: var(--color-blanco);
     color: var(--color-gris-oscuro);
 }
