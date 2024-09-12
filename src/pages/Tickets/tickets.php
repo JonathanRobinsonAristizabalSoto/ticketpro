@@ -36,139 +36,133 @@
             <form action="" method="post">
                 <button type="submit" name="cerrar_sesion" class="logout-button"><i class="fas fa-sign-out-alt"></i> Salir</button>
             </form>
+            <form action="../Home/home.php" method="get">
+                <button type="submit" class="back-button"><i class="fas fa-home"></i> Volver</button>
+            </form>
         </nav>
     </header>
 
     <main>
         <div class="container">
-            <!-- Panel Lateral -->
-            <aside class="sidebar">
-                <ul>
-                    <li><a href="usuarios.php">Usuarios</a></li>
-                    <li><a href="tipologias.php">Tipologías</a></li>
-                    <li><a href="programas.php">Programas</a></li>
-                    <li><a href="../Tickets/tickets.php">Tickets</a></li>
-                </ul>
-            </aside>
-
             <!-- Contenido Principal -->
             <div class="main-content">
-                <h3>Bienvenido a TicketPro+</h3>
-                <div class="dashboard">
-
-                    <!-- Estados de Tickets -->
-                    <section class="module estados">
-                        <h4 class="titulos_tablas">Estados de Tickets</h4>
-                        <div class="estados-container" id="estados-container">
-                            <div class="estado ticket-abierto">
-                                <h5>Tickets Abiertos</h5>
-                                <p id="tickets-abiertos">0</p>
-                            </div>
-                            <div class="estado ticket-progreso">
-                                <h5>Tickets En Progreso</h5>
-                                <p id="tickets-progreso">0</p>
-                            </div>
-                            <div class="estado ticket-pendiente">
-                                <h5>Tickets Pendientes</h5>
-                                <p id="tickets-pendientes">0</p>
-                            </div>
-                            <div class="estado ticket-resuelto">
-                                <h5>Tickets Resueltos</h5>
-                                <p id="tickets-resueltos">0</p>
-                            </div>
-                            <div class="estado ticket-cerrado">
-                                <h5>Tickets Cerrados</h5>
-                                <p id="tickets-cerrados">0</p>
-                            </div>
+                <center>
+                    <h3>MODULO TICKETS</h3>
+                </center>
+                
+                <!-- Estados de Tickets -->
+                <section class="module estados">
+                    <h4 class="titulos_tablas">Estados de Tickets</h4>
+                    <div class="estados-container" id="estados-container">
+                        <div class="estado ticket-abierto">
+                            <h5>Tickets Abiertos</h5>
+                            <p id="tickets-abiertos">0</p>
                         </div>
-                    </section>
+                        <div class="estado ticket-progreso">
+                            <h5>Tickets En Progreso</h5>
+                            <p id="tickets-progreso">0</p>
+                        </div>
+                        <div class="estado ticket-pendiente">
+                            <h5>Tickets Pendientes</h5>
+                            <p id="tickets-pendientes">0</p>
+                        </div>
+                        <div class="estado ticket-resuelto">
+                            <h5>Tickets Resueltos</h5>
+                            <p id="tickets-resueltos">0</p>
+                        </div>
+                        <div class="estado ticket-cerrado">
+                            <h5>Tickets Cerrados</h5>
+                            <p id="tickets-cerrados">0</p>
+                        </div>
+                    </div>
+                </section>
 
-                    <!-- Mis Tickets -->
-                    <section class="module mis-tickets">
-                        <h4 class="titulos_tablas">Mis Tickets</h4>
-                        <table id="miTablaMisTickets" class="display">
-                            <thead>
-                                <tr>
-                                    <th>ID ticket</th>
-                                    <th>Tipología</th>
-                                    <th>Subtipología</th>
-                                    <th>Programa</th>
-                                    <th>Descripción</th>
-                                    <th>Estado</th>
-                                    <th>Prioridad</th>
-                                    <th>Fecha de Creación</th>
-                                </tr>
-                            </thead>
-                            <tbody id="mis-tickets-list">
-                                <!-- Los datos se cargarán aquí -->
-                            </tbody>
-                        </table>
-                    </section>
+                <!-- Mis Tickets -->
+                <section class="module mis-tickets">
+                    <h4 class="titulos_tablas">Mis Tickets</h4>
+                    <table id="miTablaMisTickets" class="display">
+                        <thead>
+                            <tr>
+                                <th>ID ticket</th>
+                                <th>Numero de ticket</th>
+                                <th>Tipología</th>
+                                <th>Subtipología</th>
+                                <th>Programa</th>
+                                <th>Descripción</th>
+                                <th>Estado</th>
+                                <th>Prioridad</th>
+                                <th>Fecha de Creación</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mis-tickets-list">
+                            <!-- Los datos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </section>
 
-                    <!-- Formulario Crear Nuevo Ticket -->
-                    <section class="module">
-                        <h4 class="titulos_tablas">Crear Nuevo Ticket</h4>
-                        <form id="nueva-solicitud-form" method="POST" action="crear_ticket.php">
+                <!-- Formulario Crear Nuevo Ticket -->
+                <section class="module">
+                    <h4 class="titulos_tablas">Crear Nuevo Ticket</h4>
+                    <form id="nueva-solicitud-form" method="POST" action="crear_ticket.php">
 
-                            <!-- Formulario -->
-                            <label for="tipologia">Tipología:</label>
-                            <select id="tipologia" name="tipologia" required>
-                                <option value="" disabled selected>Seleccione una tipología</option>
-                            </select>
+                        <!-- Formulario -->
+                        <label for="tipologia">Tipología:</label>
+                        <select id="tipologia" name="tipologia" required>
+                            <option value="" disabled selected>Seleccione una tipología</option>
+                        </select>
 
-                            <label for="subtipologia">Subtipología:</label>
-                            <select id="subtipologia" name="subtipologia" required>
-                                <option value="" disabled selected>Seleccione una subtipología</option>
-                            </select>
+                        <label for="subtipologia">Subtipología:</label>
+                        <select id="subtipologia" name="subtipologia" required>
+                            <option value="" disabled selected>Seleccione una subtipología</option>
+                        </select>
 
-                            <label for="programa">Programa:</label>
-                            <select id="programa" name="programa" required>
-                                <option value="" disabled selected>Seleccione un programa</option>
-                            </select>
+                        <label for="programa">Programa:</label>
+                        <select id="programa" name="programa" required>
+                            <option value="" disabled selected>Seleccione un programa</option>
+                        </select>
 
-                            <label for="modalidad">Modalidad:</label>
-                            <input type="text" id="modalidad" name="modalidad" readonly>
+                        <label for="modalidad">Modalidad:</label>
+                        <input type="text" id="modalidad" name="modalidad" readonly>
 
-                            <label for="descripcion">Descripción:</label>
-                            <textarea id="descripcion" name="descripcion" placeholder="Ingrese una descripción" required></textarea>
+                        <label for="descripcion">Descripción:</label>
+                        <textarea id="descripcion" name="descripcion" placeholder="Ingrese una descripción" required></textarea>
 
-                            <label for="prioridad">Prioridad:</label>
-                            <select id="prioridad" name="prioridad" required>
-                                <option value="" disabled selected>Seleccione una opción</option>
-                                <option value="Alta">Alta</option>
-                                <option value="Media">Media</option>
-                                <option value="Baja">Baja</option>
-                            </select>
+                        <label for="prioridad">Prioridad:</label>
+                        <select id="prioridad" name="prioridad" required>
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            <option value="Alta">Alta</option>
+                            <option value="Media">Media</option>
+                            <option value="Baja">Baja</option>
+                        </select>
 
-                            <button type="submit">Crear</button>
-                        </form>
-                    </section>
+                        <button type="submit">Crear</button>
+                    </form>
+                </section>
 
-                    <!-- Tabla de Tickets -->
-                    <section class="module tickets-recientes">
-                        <h4 class="titulos_tablas">Historial de Tickets</h4>
-                        <table id="miTablaTickets" class="display">
-                            <thead>
-                                <tr>
-                                    <th>ID ticket</th>
-                                    <th>ID</th>
-                                    <th>Tipología</th>
-                                    <th>Subtipología</th>
-                                    <th>Programa</th>
-                                    <th>Descripción</th>
-                                    <th>Estado</th>
-                                    <th>Prioridad</th>
-                                    <th>Solicitado por</th>
-                                    <th>Asignado a</th>
-                                    <th>Fecha de Creación</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tickets-recientes-list">
-                                <?php include 'get_tickets_recientes.php'; ?>
-                            </tbody>
-                        </table>
-                    </section>
-                </div>
+                <!-- Tabla de Tickets -->
+                <section class="module tickets-recientes">
+                    <h4 class="titulos_tablas">Historial de Tickets</h4>
+                    <table id="miTablaTickets" class="display">
+                        <thead>
+                            <tr>
+                                <th>ID ticket</th>
+                                <th>Numero de ticket</th>
+                                <th>Tipología</th>
+                                <th>Subtipología</th>
+                                <th>Programa</th>
+                                <th>Descripción</th>
+                                <th>Estado</th>
+                                <th>Prioridad</th>
+                                <th>Solicitado por</th>
+                                <th>Asignado a</th>
+                                <th>Fecha de Creación</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tickets-recientes-list">
+                            <?php include 'get_tickets_recientes.php'; ?>
+                        </tbody>
+                    </table>
+                </section>
             </div>
         </div>
     </main>
@@ -177,172 +171,7 @@
         <p>&copy; 2024 TicketPro+ - Todos los derechos reservados</p>
     </footer>
 
-    <!-- Scripts -->
-    <script>
-        $(document).ready(function() {
-            inicializarFunciones();
-        });
-
-        function inicializarFunciones() {
-            manejarFormularioNuevoTicket();
-            cargarEstadosTickets();
-            cargarTicketsRecientes();
-            cargarMisTickets();
-            cargarProgramas();
-            cargarTipologiasYSubtipologias();
-            actualizarCamposPrograma();
-        }
-
-        function cargarTicketsRecientes() {
-            $.ajax({
-                url: 'get_tickets_recientes.php',
-                method: 'GET',
-                success: function(data) {
-                    $('#tickets-recientes-list').html(data);
-                    if ($.fn.DataTable.isDataTable('#miTablaTickets')) {
-                        $('#miTablaTickets').DataTable().destroy();
-                    }
-                    $('#miTablaTickets').DataTable({
-                        pageLength: 5,
-                        language: {
-                            "sEmptyTable": "No hay datos disponibles en la tabla",
-                            "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                            "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
-                            "sInfoFiltered": "(filtrado de _MAX_ entradas en total)",
-                            "sLengthMenu": "Mostrar _MENU_ entradas",
-                            "sLoadingRecords": "Cargando...",
-                            "sProcessing": "Procesando...",
-                            "sSearch": "Buscar:",
-                            "sZeroRecords": "No se encontraron resultados",
-                            "oPaginate": {
-                                "sFirst": "Primero",
-                                "sLast": "Último",
-                                "sNext": "Siguiente",
-                                "sPrevious": "Anterior"
-                            }
-                        }
-                    });
-                },
-                error: function() {
-                    handleError("Error al cargar los tickets recientes.");
-                }
-            });
-        }
-
-        function cargarMisTickets() {
-            $.ajax({
-                url: 'get_mis_tickets.php',
-                method: 'GET',
-                success: function(data) {
-                    var tickets = JSON.parse(data);
-                    var tableBody = $('#mis-tickets-list');
-                    tableBody.empty(); // Limpiar el contenido existente
-
-                    tickets.forEach(function(ticket) {
-                        var row = '<tr>' +
-                            '<td>' + ticket.id_ticket + '</td>' +
-                            '<td>' + ticket.tipologia + '</td>' +
-                            '<td>' + ticket.subtipologia + '</td>' +
-                            '<td>' + ticket.programa + '</td>' +
-                            '<td>' + ticket.descripcion + '</td>' +
-                            '<td>' + ticket.estado + '</td>' +
-                            '<td>' + ticket.prioridad + '</td>' +
-                            '<td>' + ticket.fecha_creacion + '</td>' +
-                            '</tr>';
-                        tableBody.append(row);
-                    });
-
-                    if ($.fn.DataTable.isDataTable('#miTablaMisTickets')) {
-                        $('#miTablaMisTickets').DataTable().destroy();
-                    }
-                    $('#miTablaMisTickets').DataTable({
-                        pageLength: 5,
-                        language: {
-                            "sEmptyTable": "No hay datos disponibles en la tabla",
-                            "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                            "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
-                            "sInfoFiltered": "(filtrado de _MAX_ entradas en total)",
-                            "sLengthMenu": "Mostrar _MENU_ entradas",
-                            "sLoadingRecords": "Cargando...",
-                            "sProcessing": "Procesando...",
-                            "sSearch": "Buscar:",
-                            "sZeroRecords": "No se encontraron resultados",
-                            "oPaginate": {
-                                "sFirst": "Primero",
-                                "sLast": "Último",
-                                "sNext": "Siguiente",
-                                "sPrevious": "Anterior"
-                            }
-                        }
-                    });
-                },
-                error: function() {
-                    handleError("Error al cargar mis tickets.");
-                }
-            });
-        }
-
-        function manejarFormularioNuevoTicket() {
-            $('#nueva-solicitud-form').submit(function(event) {
-                event.preventDefault();
-
-                var tipologia = $('#tipologia').val();
-                var subtipologia = $('#subtipologia').val();
-                var programa = $('#programa').val();
-                var descripcion = $('#descripcion').val();
-                var prioridad = $('#prioridad').val();
-
-                if (!tipologia || !subtipologia || !programa || !descripcion || !prioridad) {
-                    alert('Por favor, complete todos los campos del formulario.');
-                    return;
-                }
-
-                $.ajax({
-                    url: 'crear_ticket.php',
-                    method: 'POST',
-                    data: {
-                        tipologia: tipologia,
-                        subtipologia: subtipologia,
-                        programa: programa,
-                        descripcion: descripcion,
-                        prioridad: prioridad
-                    },
-                    success: function(response) {
-                        alert('Ticket creado exitosamente');
-                        $('#nueva-solicitud-form')[0].reset();
-                        cargarTicketsRecientes();
-                        cargarMisTickets();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error al crear el ticket:", status, error);
-                        alert('Error al crear el ticket. Por favor, intente de nuevo.');
-                    }
-                });
-            });
-        }
-
-        function cargarEstadosTickets() {
-            $.ajax({
-                url: 'get_estados.php',
-                method: 'GET',
-                success: function(data) {
-                    $('#estados-container').html(data);
-                    inicializarFuncionesEstados();
-                },
-                error: function() {
-                    handleError("Error al cargar los estados de los tickets.");
-                }
-            });
-        }
-
-        function inicializarFuncionesEstados() {
-            console.log("Estados de tickets cargados y funciones adicionales inicializadas.");
-        }
-
-        function handleError(message) {
-            alert(message);
-        }
-    </script>
+    <script src="../../../assets/js/tickets.js"></script>
 </body>
 
 </html>

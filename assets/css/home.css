@@ -546,3 +546,52 @@ tr.odd {
         font-size: 1.1rem;
     }
 }
+
+/* Estilos de la barra lateral */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 140px;
+  height: 100%;
+  background-color: var(--color-verde);
+  color: var(--color-blanco);
+  overflow-x: hidden;
+  padding-top: 20px;
+  box-shadow: 2px 0 5px var(--color-sombra);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  text-align: center; /* Alineación centrada para ícono y texto */
+}
+
+.sidebar ul li a {
+  color: var(--color-blanco);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column; /* Cambia la dirección de ícono y texto a columna */
+  align-items: center; /* Alineación centrada */
+  transition: background-color 0.2s ease;
+  padding: 10px 15px;
+}
+
+.sidebar ul li a i {
+  margin-bottom: 10px; /* Espacio debajo del ícono */
+  font-size: 24px; /* Aumenta el tamaño del ícono */
+}
+
+.sidebar ul li a:hover {
+  background-color: var(--color-hover);
+}
+
+.sidebar .config {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}
