@@ -4,6 +4,9 @@ function cargarTicketsRecientes() {
         method: 'GET',
         success: function(data) {
             $('#tickets-recientes-list').html(data);
+            if ($.fn.DataTable.isDataTable('#miTablaTickets')) {
+                $('#miTablaTickets').DataTable().destroy();
+            }
             $('#miTablaTickets').DataTable({
                 pageLength: 5,
                 language: {

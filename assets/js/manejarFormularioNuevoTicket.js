@@ -4,22 +4,22 @@ function manejarFormularioNuevoTicket() {
         event.preventDefault();
 
         // Obtener los valores del formulario
-        var tipo_solicitud = $('#tipo_solicitud').val();
         var tipologia = $('#tipologia').val();
+        var subtipologia = $('#subtipologia').val();
         var programa = $('#programa').val();
         var descripcion = $('#descripcion').val();
         var prioridad = $('#prioridad').val();
 
         // Validación básica
-        if (!tipo_solicitud || !tipologia || !programa || !descripcion || !prioridad) {
+        if (!tipologia || !subtipologia || !programa || !descripcion || !prioridad) {
             alert('Por favor, complete todos los campos del formulario.');
             return;
         }
 
         // Verificar los datos antes de enviarlos
         console.log("Datos del formulario:", {
-            tipo_solicitud: tipo_solicitud,
             tipologia: tipologia,
+            subtipologia: subtipologia,
             programa: programa,
             descripcion: descripcion,
             prioridad: prioridad
@@ -27,11 +27,11 @@ function manejarFormularioNuevoTicket() {
 
         // Enviar datos al servidor para crear el ticket
         $.ajax({
-            url: '../Home/crear_ticket.php', // Ruta corregida
+            url: 'crear_ticket.php', // Ruta corregida
             method: 'POST',
             data: {
-                tipo_solicitud: tipo_solicitud,
                 tipologia: tipologia,
+                subtipologia: subtipologia,
                 programa: programa,
                 descripcion: descripcion,
                 prioridad: prioridad

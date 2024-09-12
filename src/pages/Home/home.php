@@ -75,23 +75,20 @@
                 <form id="nueva-solicitud-form" method="POST" action="crear_ticket.php">
 
                     <!-- Formulario -->
-                    <label for="tipo_solicitud">Tipo de solicitud:</label>
-                    <select id="tipo_solicitud" name="tipo_solicitud" required>
-                        <option value="" disabled selected>Seleccione una opción</option>
-                    </select>
-
                     <label for="tipologia">Tipología:</label>
                     <select id="tipologia" name="tipologia" required>
                         <option value="" disabled selected>Seleccione una tipología</option>
+                    </select>
+
+                    <label for="subtipologia">Subtipología:</label>
+                    <select id="subtipologia" name="subtipologia" required>
+                        <option value="" disabled selected>Seleccione una subtipología</option>
                     </select>
 
                     <label for="programa">Programa:</label>
                     <select id="programa" name="programa" required>
                         <option value="" disabled selected>Seleccione un programa</option>
                     </select>
-
-                    <label for="tipo_de_formacion">Tipo de formación:</label>
-                    <input type="text" id="tipo_de_formacion" name="tipo_de_formacion" readonly>
 
                     <label for="modalidad">Modalidad:</label>
                     <input type="text" id="modalidad" name="modalidad" readonly>
@@ -119,8 +116,8 @@
                         <tr>
                             <th>ID ticket</th>
                             <th>ID</th>
-                            <th>Tipo de Solicitud</th>
                             <th>Tipología</th>
+                            <th>Subtipología</th>
                             <th>Programa</th>
                             <th>Descripción</th>
                             <th>Estado</th>
@@ -144,9 +141,8 @@
                         <tr>
                             <th>Código</th>
                             <th>Versión</th>
-                            <th>Tipo de Formación</th>
                             <th>Nombre</th>
-                            <th>Nivel de Formación</th>
+                            <th>Descripción</th>
                             <th>Duración</th>
                             <th>Línea Tecnológica</th>
                             <th>Red Tecnológica</th>
@@ -168,7 +164,7 @@
     <script src="../../../assets/js/cargarEstadosTickets.js"></script>
     <script src="../../../assets/js/cargarTicketsRecientes.js"></script>
     <script src="../../../assets/js/cargarProgramas.js"></script>
-    <script src="../../../assets/js/cargarTiposSolicitudYTipologias.js"></script>
+    <script src="../../../assets/js/cargarTipologiasYSubtipologias.js"></script>
     <script src="../../../assets/js/actualizarCamposPrograma.js"></script>
     <script src="../../../assets/js/manejarFormularioNuevoTicket.js"></script>
     <script src="../../../assets/js/inicializarFunciones.js"></script>

@@ -4,7 +4,7 @@ function inicializarFunciones() {
     cargarEstadosTickets();
     cargarTicketsRecientes();
     cargarProgramas();
-    cargarTiposSolicitudYTipologias();
+    cargarTipologiasYSubtipologias(); // Corregido el nombre de la función
     actualizarCamposPrograma();
 }
 
