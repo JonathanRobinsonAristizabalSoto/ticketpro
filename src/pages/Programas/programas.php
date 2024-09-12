@@ -30,7 +30,6 @@
         <section class="textos-header">
             <h1 class="titulo1">TicketPro+</h1>
             <p>¡Hola, <?php echo htmlspecialchars($nombre); ?>!</p>
-            <p>Documento: <?php echo htmlspecialchars($documento); ?></p>
         </section>
         <nav>
             <form action="" method="post">

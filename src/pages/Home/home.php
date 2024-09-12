@@ -19,22 +19,29 @@
 </head>
 
 <body>
-    <header>
-        <section class="textos-header">
-            <h1 class="titulo1">TicketPro+</h1>
-            <p>¡Hola, <?php echo htmlspecialchars($nombre); ?>!</p>
-            <p>Documento: <?php echo htmlspecialchars($documento); ?></p>
-        </section>
-        <nav>
-            <form action="" method="post">
-                <button type="submit" name="cerrar_sesion" class="logout-button"><i class="fas fa-sign-out-alt"></i> Salir</button>
-            </form>
-        </nav>
-    </header>
+<header>
+    <a href="../../../index.php" class="logo">
+        <img src="../../../assets/images/logoticket.png" alt="TicketPro+ Logo">
+    </a>
+    <section class="textos-header">
+        <h1 class="titulo1">TicketPro+</h1>
+        <p>¡Hola, <?php echo htmlspecialchars($nombre); ?>!</p>
+    </section>
+    <nav>
+        <form action="" method="post">
+            <button type="submit" name="cerrar_sesion" class="logout-button">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </button>
+        </form>
+    </nav>
+</header>
+
 
     <main>
         <div class="container">
             <!-- Panel Lateral Fijo -->
+
+
             <aside class="sidebar" role="navigation" aria-label="Menú de navegación lateral">
                 <center>
                     <a href="../../../index.php" class="logo">

@@ -28,26 +28,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
 }
 
-.textos-header {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    z-index: 1;
-}
-
-.textos-header h1 {
-    margin: 0;
-}
-
+/* Estilos del logo */
 .logo {
-    margin-left: 20px;
+    margin-left: 0px;
 }
 
 .logo img {
@@ -60,23 +45,30 @@ header {
     transform: scale(1.2) rotate(360deg);
 }
 
-nav {
-    margin-right: 20px;
+/* Sección de los textos */
+.textos-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+    margin-top: auto;
 }
 
-nav a {
-    color: var(--color-blanco);
-    text-decoration: none;
-    margin-left: 20px;
+.textos-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.textos-header p {
+    margin: 0;
     font-size: 1rem;
 }
 
-nav a:hover {
-    text-decoration: underline;
-}
+
 
 .logout-button {
-    padding: 8px;
+    padding: 8px 15px;
     font-size: 0.9rem;
     background-color: var(--color-naranja);
     color: var(--color-blanco);
@@ -84,6 +76,9 @@ nav a:hover {
     border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .logout-button:hover {
@@ -525,7 +520,7 @@ tr.odd {
     }
 
     .logo img {
-        height: 60px;
+        height: 55px;
     }
 
     nav a {
@@ -582,7 +577,6 @@ tr.odd {
 }
 
 .sidebar ul li a i {
-  margin-bottom: 10px; /* Espacio debajo del ícono */
   font-size: 24px; /* Aumenta el tamaño del ícono */
 }
 
@@ -595,3 +589,5 @@ tr.odd {
   bottom: 20px;
   width: 100%;
 }
+
+
