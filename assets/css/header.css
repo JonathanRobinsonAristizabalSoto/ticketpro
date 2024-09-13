@@ -1,0 +1,145 @@
+/* Ruta: assets/css/header.css */
+
+/* Estilos base del encabezado */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--color-verde);
+  position: relative;
+  height: 80px; /* Ajusta la altura del header según sea necesario */
+}
+
+/* Logo en el encabezado */
+.logo_header img {
+  width: 70px;
+  margin: 10px;
+  padding: 10px;
+  transition: transform 0.6s ease; /* Transición suave para la rotación */
+}
+
+/* Animación de rotación del logo en hover */
+.logo_header img:hover {
+  transform: rotate(360deg); /* Rotar 360 grados en sentido de las manecillas del reloj */
+}
+
+/* Centrar el título horizontal y verticalmente en el encabezado */
+.titulo_header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  text-align: center;
+}
+
+.titulo_header h1 {
+  font-size: 1.5rem;
+  color: var(--color-blanco);
+  margin: 0;
+}
+
+/* Contenedor del ícono de menú y el texto "Menú" */
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px;
+}
+
+/* Estilos del ícono de menú (hamburguesa) */
+.menu-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 25px;
+}
+
+.menu-icon span {
+  background-color: var(--color-blanco);
+  height: 4px;
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+/* Texto "Menú" debajo del ícono */
+.menu-text {
+  color: var(--color-blanco);
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+/* Estilos del menú oculto */
+nav {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-verde);
+  position: absolute;
+  top: 90px;
+  right: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  display: block;
+  color: var(--color-blanco);
+  text-decoration: none;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--color-gris-claro);
+  font-size: 1rem;
+}
+
+nav a:hover {
+  background-color: var(--color-naranja);
+}
+
+/* Mostrar el menú cuando esté activo */
+nav.active {
+  display: flex;
+}
+
+/* Animación para el ícono (cuando se abre el menú) */
+.menu-icon.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Ajustes en dispositivos móviles */
+@media (max-width: 768px) {
+  /* Ocultar el texto "Menú" en pantallas pequeñas */
+  .menu-text {
+    display: none;
+  }
+
+  /* Asegurar que el título siga centrado en pantallas móviles */
+  .titulo_header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  /* Logo en el encabezado */
+  .logo_header img {
+    width: 60px;
+  }
+
+  /* Ajustar la posición del ícono en móviles */
+  .menu-container {
+    margin-left: 10px;
+  }
+}

@@ -20,6 +20,7 @@
 
 <body>
 <header>
+    <!-- encabezado -->
     <a href="../../../index.php" class="logo">
         <img src="../../../assets/images/logoticket.png" alt="TicketPro+ Logo">
     </a>

@@ -1,0 +1,30 @@
+/* Ruta: assets/css/footer.css */
+
+/* Estilos del pie de página */
+footer {
+    background-color: var(--color-verde); /* Color de fondo del pie de página */
+    color: var(--color-blanco); /* Color del texto */
+    padding: 20px; /* Espaciado alrededor del contenido */
+    text-align: center; /* Alineación del texto centrada */
+    font-size: 0.9rem; /* Tamaño de fuente ajustado */
+    height: 40px; /* Altura mínima del pie de página */
+    display: flex;
+    justify-content: center; /* Asegura que el contenido esté centrado horizontalmente */
+    align-items: center; /* Alinea el contenido verticalmente */
+    position: relative; /* Permite la colocación de elementos dentro del footer */
+    bottom: 0;
+}
+
+/* Estilos del párrafo dentro del pie de página */
+footer p {
+    margin: 0; /* Remueve el margen del párrafo para evitar espacios extra */
+    padding: 0; /* Remueve el padding adicional */
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    footer {
+        font-size: 0.8rem; /* Ajuste del tamaño de fuente en pantallas más pequeñas */
+        padding: 20px; /* Reduce el padding para pantallas móviles */
+    }
+}
