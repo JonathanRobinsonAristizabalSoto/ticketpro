@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tickets - TicketPro+</title>
+    <link rel="stylesheet" href="../../../assets/css/header.css">
+    <link rel="stylesheet" href="../../../assets/css/footer.css">
     <link rel="stylesheet" href="../../../assets/css/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,21 +25,39 @@
 </head>
 
 <body>
+    <!-- encabezado -->
     <header>
-        <a href="../../../index.php" class="logo">
-            <img src="../../../assets/images/logoticket.png" alt="TicketPro+ Logo">
-        </a>
-        <section class="textos-header">
-            <h1 class="titulo1">TicketPro+</h1>
+        <div class="logo_header">
+            <a href="index.php">
+                <img src="../../../assets/images/logoticket.png" alt="Logo TicketPro+">
+            </a>
+        </div>
+        <div class="titulo_header_home">
+            <h1>Bienvenido a TicketPro+</h1>
             <p>¡Hola, <?php echo htmlspecialchars($nombre); ?>!</p>
-        </section>
-        <nav>
+        </div>
+
+        <!-- Ícono de menú hamburguesa con texto "Menú" -->
+        <div class="menu-container">
+            <div class="menu-icon" id="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="menu-text">Menú</span> <!-- Texto debajo del icono -->
+        </div>
+        <!-- Menú de navegación -->
+        <nav id="menu-nav">
+            <a href="../src/pages/Profile/miperfil.php"><i class="fas fa-user"></i> Mi perfil</a>
+            <a href="configuracion.php"><i class="fas fa-cog"></i> Configuración</a>
+            <a href="../Home/home.php"><i class="fas fa-arrow-left"></i> Atras</a>
+            <br>
             <form action="" method="post">
-                <button type="submit" name="cerrar_sesion" class="logout-button"><i class="fas fa-sign-out-alt"></i> Salir</button>
+                <button type="submit" name="cerrar_sesion" class="logout-button">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
             </form>
-            <form action="../Home/home.php" method="get">
-                <button type="submit" class="back-button"><i class="fas fa-home"></i> Volver</button>
-            </form>
+            <br>
         </nav>
     </header>
 
@@ -169,6 +189,8 @@
     <footer>
         <p>&copy; 2024 TicketPro+ - Todos los derechos reservados</p>
     </footer>
+
+    <script src="../../../assets/js/menu.js"></script>
 
     <script src="../../../assets/js/tickets.js"></script>
 </body>

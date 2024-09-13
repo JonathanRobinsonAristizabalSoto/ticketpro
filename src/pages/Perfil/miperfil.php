@@ -49,7 +49,6 @@
         </div>
         <!-- Menú de navegación -->
         <nav id="menu-nav">
-            <a href="../src/pages/Profile/miperfil.php"><i class="fas fa-user"></i> Mi perfil</a>
             <a href="configuracion.php"><i class="fas fa-cog"></i> Configuración</a>
             <a href="../Home/home.php"><i class="fas fa-arrow-left"></i> Atras</a>
             <br>
@@ -67,29 +66,8 @@
             <!-- Contenido Principal -->
             <div class="main-content">
                 <center>
-                    <h3>Bienvenido a TicketPro+</h3>
+                    <h3>Mi Perfil</h3>
                 </center>
-
-                <!-- Programas -->
-                <section class="module programas">
-                    <h4 class="titulos_tablas">Programas</h4>
-                    <table id="miTablaProgramas" class="display">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Versión</th>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Duración</th>
-                                <th>Línea Tecnológica</th>
-                                <th>Red Tecnológica</th>
-                                <th>Red de Conocimiento</th>
-                                <th>Modalidad</th>
-                            </tr>
-                        </thead>
-                        <tbody id="programas-list"></tbody>
-                    </table>
-                </section>
 
             </div>
         </div>
@@ -101,14 +79,6 @@
 
     <script src="../../../assets/js/menu.js"></script>
 
-    <script src="../../../assets/js/handleError.js"></script>
-    <script src="../../../assets/js/cargarEstadosTickets.js"></script>
-    <script src="../../../assets/js/cargarTicketsRecientes.js"></script>
-    <script src="../../../assets/js/cargarProgramas.js"></script>
-    <script src="../../../assets/js/cargarTipologiasYSubtipologias.js"></script>
-    <script src="../../../assets/js/actualizarCamposPrograma.js"></script>
-    <script src="../../../assets/js/manejarFormularioNuevoTicket.js"></script>
-    <script src="../../../assets/js/inicializarFunciones.js"></script>
 </body>
 
 </html>

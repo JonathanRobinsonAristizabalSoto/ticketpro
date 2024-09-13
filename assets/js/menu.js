@@ -7,5 +7,13 @@ $(document).ready(function () {
         
         // Alternar clase 'open' para la animación del ícono
         $(this).toggleClass('open');
+        
+        // Si el menú está activo, establecer un temporizador para ocultarlo
+        if ($('#menu-nav').hasClass('active')) {
+            setTimeout(function () {
+                $('#menu-nav').removeClass('active');
+                $('#menu-icon').removeClass('open');
+            }, 5000); // 5000 milisegundos = 5 segundos
+        }
     });
 });
