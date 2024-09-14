@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="../../../assets/css/header.css">
     <link rel="stylesheet" href="../../../assets/css/footer.css">
     <link rel="stylesheet" href="../../../assets/css/home.css">
+    <link rel="stylesheet" href="../../../assets/css/menu.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+
 
     <!-- Incluir CSS de DataTables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
@@ -38,6 +39,10 @@
             <p>¡Hola, <?php echo htmlspecialchars($nombre); ?>!</p>
         </div>
 
+        <div class="btn_header_back">
+            <a href="../Home/home.php"><i class="fas fa-arrow-left"></i> Atras</a>
+        </div>
+
         <!-- Ícono de menú hamburguesa con texto "Menú" -->
         <div class="menu-container">
             <div class="menu-icon" id="menu-icon">
@@ -51,7 +56,6 @@
         <nav id="menu-nav">
             <a href="../src/pages/Profile/miperfil.php"><i class="fas fa-user"></i> Mi perfil</a>
             <a href="configuracion.php"><i class="fas fa-cog"></i> Configuración</a>
-            <a href="../Home/home.php"><i class="fas fa-arrow-left"></i> Atras</a>
             <br>
             <form action="" method="post">
                 <button type="submit" name="cerrar_sesion" class="logout-button">
@@ -67,7 +71,7 @@
             <!-- Contenido Principal -->
             <div class="main-content">
                 <center>
-                    <h3>Bienvenido a TicketPro+</h3>
+                    <h3>PROGRAMAS</h3>
                 </center>
 
                 <!-- Programas -->

@@ -1,4 +1,5 @@
-// Ruta: assets/js/app.js
+// Ruta: assets/js/menu.js
+
 $(document).ready(function () {
     // Manejar clic en el ícono de menú
     $('#menu-icon').on('click', function () {
@@ -13,7 +14,7 @@ $(document).ready(function () {
             setTimeout(function () {
                 $('#menu-nav').removeClass('active');
                 $('#menu-icon').removeClass('open');
-            }, 5000); // 5000 milisegundos = 5 segundos
+            }, 6000); // 5000 milisegundos = 5 segundos
         }
     });
 });

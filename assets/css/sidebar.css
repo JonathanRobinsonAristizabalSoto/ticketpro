@@ -16,21 +16,23 @@
   .sidebar {
     position: fixed;
     left: -100px; /* Mueve el sidebar fuera de la vista inicial */
-    top: 0;
+    top: 2%;
+    bottom: 2%;
     padding: 5px;
     width: 100px; /* Ancho fijo del sidebar */
-    height: 100%;
+    height: 95%;
     background-color: var(--color-gris);
     color: var(--color-blanco);
     overflow-x: hidden;
+    border-radius: 0 10px 10px 0; /* Borde redondeado en el lado derecho */
     box-shadow: 2px 0 5px var(--color-gris-oscuro); /* Sombra hacia la derecha */
     transition: left 0.3s ease, width 0.3s ease; /* Transición suave al cambiar de tamaño y posición */
     z-index: 999; /* Asegura que esté sobre otros elementos */
   }
   
   .sidebar.collapsed {
-    left: 40px; /* Mueve el sidebar a la vista justo después del botón de toggle */
-    width: 100px; /* Ancho del sidebar cuando está expandido */
+    left: 35px; /* Mueve el sidebar a la vista justo después del botón de toggle */
+    width: 90px; /* Ancho del sidebar cuando está expandido */
   }
   
   .sidebar.collapsed .logo_panel,
@@ -66,8 +68,8 @@
   
   /* Efecto hover para los enlaces del sidebar */
   .sidebar ul li a:hover {
-    background-color: var(--color-naranja); /* Color de fondo al pasar el ratón */
-    border-radius: 5px; /* Bordes redondeados para el efecto de hover */
+    color: var(--color-naranja); /* Color de fondo al pasar el ratón */
+    
   }
   
   /* Logo del sidebar */
@@ -87,7 +89,7 @@
     position: fixed;
     left: 0; /* Posición al borde izquierdo de la pantalla */
     top: 0; /* Comienza desde la parte superior de la página */
-    width: 40px; /* Ancho del toggle */
+    width: 35px; /* Ancho del toggle */
     height: 100%; /* Ocupa toda la altura de la página */
     background-color: var(--color-verde);
     color: var(--color-blanco);
@@ -108,6 +110,9 @@
     writing-mode: vertical-rl; /* Escribir texto verticalmente */
     transform: rotate(180deg); /* Ajuste para el texto vertical */
     transition: color 0.3s ease; /* Transición suave para el color del texto */
+    background-color: var(--color-gris);
+    height: 400px;
+    border-radius: 5px;
   }
   
   /* Efecto hover para el span del toggle */

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./assets/css/header.css">
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="../../../assets/css/menu.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="./assets/js/jquery.min.js"></script>
@@ -38,10 +39,10 @@
         </div>
         <!-- Menú de navegación -->
         <nav id="menu-nav">
-            <a href="./src/pages/About/about.php">Nosotros</a>
-            <a href="./src/pages/Contact/contact.php">Contacto</a>
             <a href="./src/pages/Auth/login.php">Iniciar sesión</a>
             <a href="./src/pages/Auth/register.php">Registrarse</a>
+            <a href="./src/pages/About/about.php">Nosotros</a>
+            <a href="./src/pages/Contact/contact.php">Contacto</a>
         </nav>
     </header>
 
