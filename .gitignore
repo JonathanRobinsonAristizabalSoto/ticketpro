@@ -1,0 +1,12 @@
+# Ignorar todos los archivos dentro de la carpeta logs/
+logs/*
+
+# Ignorar todos los archivos dentro de la carpeta DB/
+
+
+# Ignorar Archivos generados por el sistema y el IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
