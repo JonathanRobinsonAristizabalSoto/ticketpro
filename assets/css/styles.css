@@ -22,7 +22,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: var(--color-blanco);
-    color: var(--color-gris-oscuro);
 }
 
 /* Estilos del botón de sesión */
@@ -68,7 +67,11 @@ main {
     color: var(--color-blanco);
 }
 
-h1, h2 {
+h1{
+    color: var(--color-blanco);
+}
+
+h2 {
     color: var(--color-blanco);
 }
 
@@ -120,6 +123,44 @@ button,
 button:hover,
 .logout-button:hover {
     background-color: var(--color-gris);
+}
+
+.volver {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.registrarse{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.olvideContrase{
+    color: var(--color-blanco);
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+
+.btnRegistrarse{
+    display: flex;
+    margin-top: 10px;
+    margin: 0 auto;
+}
+
+.btniniciarsesion{
+    display: flex;
+    margin-top: 10px;
+    margin: 0 auto;
+}
+
+.g-recaptcha{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
 }
 
 /* Estilos del contenedor de restablecimiento de contraseña */

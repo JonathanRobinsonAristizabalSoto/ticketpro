@@ -38,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Verificar que el id_rol existe en la tabla rol
-    $stmt = $conexion->prepare("SELECT id_rol FROM rol WHERE id_rol = ?");
+    // Verificar que el id_rol existe en la tabla Roles
+    $stmt = $conexion->prepare("SELECT id_rol FROM Roles WHERE id_rol = ?");
     $stmt->bind_param("i", $tipo_usuario_id);
     $stmt->execute();
     $stmt->store_result();
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Preparar la consulta SQL
-    $stmt = $conexion->prepare("INSERT INTO usuarios (tipo_documento, documento, nombre, apellido, email, telefono, departamento, municipio, password, id_rol, fecha_registro, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'activo')");
+    $stmt = $conexion->prepare("INSERT INTO Usuarios (tipo_documento, documento, nombre, apellido, email, telefono, departamento, municipio, password, id_rol, fecha_registro, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'activo')");
     $stmt->bind_param("sssssssssi", $tipo_documento, $documento, $nombre, $apellido, $email, $telefono, $departamento, $municipio, $hashed_password, $tipo_usuario_id);
 
     // Ejecutar la consulta y verificar el resultado
@@ -119,7 +119,7 @@ $conexion->close();
                 <a href="./login.php">Login</a>
                 <a href="./src/pages/About/about.php">Nosotros</a>
                 <a href="./src/pages/Contact/contact.php">Contacto</a>
-                
+
             </nav>
         </div>
     </header>
@@ -165,6 +165,7 @@ $conexion->close();
                 <p>La contraseña debe tener al menos 6 caracteres, una letra mayúscula y un símbolo.</p>
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" required placeholder="Contraseña">
+                
 
                 <!-- Confirmar contraseña -->
                 <label for="confirm-password">Confirmar contraseña:</label>
@@ -174,13 +175,16 @@ $conexion->close();
                 <label for="tipoUsuario">Tipo de usuario:</label>
                 <select id="tipoUsuario" name="tipoUsuario" required>
                     <option value="1">Administrador</option>
-                    <option value="2">Usuario</option>
+                    <option value="2">Supervisor</option>
+                    <option value="3">Soporte</option>
+                    <option value="4">Operador</option>
+                    <option value="5">Usuario</option>
                 </select>
-
+                <br>
                 <!-- Acciones del formulario -->
                 <div class="form-actions">
-                    <button type="submit">Registrarse</button>
-                    <a href="../../../index.php">Volver al inicio de sesión</a>
+                    <button class="btnRegistrarse" type="submit">Registrarse</button>
+                    <a href="../../../index.php" class="volver" >Volver al inicio de sesión</a>
                 </div>
             </form>
         </div>

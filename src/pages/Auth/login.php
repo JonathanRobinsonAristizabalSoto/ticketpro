@@ -46,7 +46,7 @@
                 <a href="./register.php">Registrarse</a>
                 <a href="./src/pages/About/about.php">Nosotros</a>
                 <a href="./src/pages/Contact/contact.php">Contacto</a>
-                
+
             </nav>
         </div>
     </header>
@@ -81,17 +81,20 @@
                 <label for="user-type">Tipo de usuario:</label>
                 <select id="user-type" name="user-type" required>
                     <option value="1">Administrador</option>
-                    <option value="2">Usuario</option>
+                    <option value="2">Supervisor</option>
+                    <option value="3">Soporte</option>
+                    <option value="4">Operador</option>
+                    <option value="5">Usuario</option>
                 </select>
 
                 <!-- capchat -->
                 <div class="g-recaptcha" data-sitekey="6LdpSHwpAAAAABpEL1Pus7OzGgEAJ8U212pSYx7z" data-action="LOGIN"></div>
-
+                <br>
                 <!-- Acciones del formulario -->
                 <div class="form-actions">
-                    <button type="submit">Iniciar sesión</button>
-                    <a href="./register.php">Registrarse</a>
-                    <a href="./password_recovery.php">Olvidé mi contraseña</a>
+                    <button type="submit" class="btniniciarsesion">Iniciar sesión</button>
+                    <a href="./register.php" class="registrarse" >Registrarse</a>
+                    <a href="./password_recovery.php" class="olvideContrase">Olvidé mi contraseña</a>
                 </div>
             </form>
         </div>
