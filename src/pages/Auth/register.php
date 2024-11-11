@@ -119,10 +119,6 @@ $conexion->close();
                 <a href="./login.php">Login</a>
                 <a href="./src/pages/About/about.php">Nosotros</a>
                 <a href="./src/pages/Contact/contact.php">Contacto</a>
-<<<<<<< HEAD
-=======
-
->>>>>>> 5a9d9092d4cc3ac722a4874b1d24692f65d31ca9
             </nav>
         </div>
     </header>
@@ -167,15 +163,10 @@ $conexion->close();
                 <!-- Campo de contraseña -->
                 <p>La contraseña debe tener al menos 6 caracteres, una letra mayúscula y un símbolo.</p>
                 <label for="password">Contraseña:</label>
-<<<<<<< HEAD
                 <div class="password-container">
                     <input type="password" id="password" name="password" required placeholder="Contraseña">
                     <i class="fas fa-eye" id="togglePassword"></i>
                 </div>
-=======
-                <input type="password" id="password" name="password" required placeholder="Contraseña">
-                
->>>>>>> 5a9d9092d4cc3ac722a4874b1d24692f65d31ca9
 
                 <!-- Confirmar contraseña -->
                 <label for="confirm-password">Confirmar contraseña:</label>

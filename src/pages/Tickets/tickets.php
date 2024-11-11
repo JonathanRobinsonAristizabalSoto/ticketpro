@@ -1,4 +1,36 @@
-<?php include '../Auth/auth_session.php'; ?>
+<?php 
+include '../Auth/auth_session.php'; 
+include_once '../../connections/config.php'; 
+
+// Verificar si la conexión se estableció correctamente
+if (!$conexion) {
+    die("Error: No se pudo conectar a la base de datos.");
+}
+
+// Obtener las tipologías
+$tipologias = [];
+$result = $conexion->query("SELECT DISTINCT tipologia FROM Tipologias");
+while ($row = $result->fetch_assoc()) {
+    $tipologias[] = $row;
+}
+
+// Obtener las subtipologías
+$subtipologias = [];
+$result = $conexion->query("SELECT tipologia, subtipologia FROM Tipologias");
+while ($row = $result->fetch_assoc()) {
+    $subtipologias[] = $row;
+}
+
+// Obtener los programas
+$programas = [];
+$result = $conexion->query("SELECT id_programa, nombre, modalidad FROM Programas");
+while ($row = $result->fetch_assoc()) {
+    $programas[] = $row;
+}
+
+// Cerrar la conexión
+$conexion->close();
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -72,7 +104,7 @@
                 <center>
                     <h3>TICKETS</h3>
                 </center>
-                
+
                 <!-- Estados de Tickets -->
                 <section class="module estados">
                     <h4 class="titulos_tablas">Estados de Tickets</h4>
@@ -123,7 +155,6 @@
                     </table>
                 </section>
 
-                <!-- Formulario Crear Nuevo Ticket -->
                 <section class="module">
                     <h4 class="titulos_tablas">Crear Nuevo Ticket</h4>
                     <form id="nueva-solicitud-form" method="POST" action="crear_ticket.php">
@@ -132,6 +163,9 @@
                         <label for="tipologia">Tipología:</label>
                         <select id="tipologia" name="tipologia" required>
                             <option value="" disabled selected>Seleccione una tipología</option>
+                            <?php foreach ($tipologias as $tipologia): ?>
+                                <option value="<?php echo $tipologia['tipologia']; ?>"><?php echo $tipologia['tipologia']; ?></option>
+                            <?php endforeach; ?>
                         </select>
 
                         <label for="subtipologia">Subtipología:</label>
@@ -139,13 +173,18 @@
                             <option value="" disabled selected>Seleccione una subtipología</option>
                         </select>
 
-                        <label for="programa">Programa:</label>
-                        <select id="programa" name="programa" required>
-                            <option value="" disabled selected>Seleccione un programa</option>
-                        </select>
+                        <div id="programa-container" style="display: none;">
+                            <label for="programa">Programa:</label>
+                            <select id="programa" name="programa" disabled>
+                                <option value="" disabled selected>Seleccione un programa</option>
+                                <?php foreach ($programas as $programa): ?>
+                                    <option value="<?php echo $programa['id_programa']; ?>"><?php echo $programa['nombre']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
 
-                        <label for="modalidad">Modalidad:</label>
-                        <input type="text" id="modalidad" name="modalidad" readonly>
+                            <label for="modalidad">Modalidad:</label>
+                            <input type="text" id="modalidad" name="modalidad" readonly>
+                        </div>
 
                         <label for="descripcion">Descripción:</label>
                         <textarea id="descripcion" name="descripcion" placeholder="Ingrese una descripción" required></textarea>
@@ -195,8 +234,65 @@
     </footer>
 
     <script src="../../../assets/js/menu.js"></script>
-
     <script src="../../../assets/js/tickets.js"></script>
+    <script>
+        // JavaScript para actualizar las subtipologías según la tipología seleccionada
+        const subtipologias = <?php echo json_encode($subtipologias); ?>;
+        const programas = <?php echo json_encode($programas); ?>;
+        const tipologiaSelect = document.getElementById('tipologia');
+        const subtipologiaSelect = document.getElementById('subtipologia');
+        const programaContainer = document.getElementById('programa-container');
+        const programaSelect = document.getElementById('programa');
+        const modalidadInput = document.getElementById('modalidad');
+
+        tipologiaSelect.addEventListener('change', function() {
+            const selectedTipologia = this.value;
+            subtipologiaSelect.innerHTML = '<option value="" disabled selected>Seleccione una subtipología</option>';
+            programaSelect.innerHTML = '<option value="" disabled selected>Seleccione un programa</option>';
+            modalidadInput.value = '';
+
+            subtipologias.forEach(function(subtipologia) {
+                if (subtipologia.tipologia === selectedTipologia) {
+                    const option = document.createElement('option');
+                    option.value = subtipologia.subtipologia;
+                    option.textContent = subtipologia.subtipologia;
+                    subtipologiaSelect.appendChild(option);
+                }
+            });
+
+            // Mostrar u ocultar los campos de programa y modalidad
+            if (selectedTipologia === 'Formacion' || selectedTipologia === 'Certificacion' || selectedTipologia === 'Consultas') {
+                programaContainer.style.display = 'block';
+                programaSelect.disabled = false;
+                programas.forEach(function(programa) {
+                    const option = document.createElement('option');
+                    option.value = programa.id_programa;
+                    option.textContent = programa.nombre;
+                    programaSelect.appendChild(option);
+                });
+            } else if (selectedTipologia === 'PQRSF' || selectedTipologia === 'Otro') {
+                programaContainer.style.display = 'block';
+                programaSelect.disabled = true;
+                programaSelect.innerHTML = '<option value="no_aplica" selected>No aplica</option>';
+                modalidadInput.value = 'No aplica';
+            } else {
+                programaContainer.style.display = 'none';
+                programaSelect.disabled = true;
+                modalidadInput.value = '';
+            }
+        });
+
+        programaSelect.addEventListener('change', function() {
+            const selectedPrograma = this.value;
+            modalidadInput.value = '';
+
+            programas.forEach(function(programa) {
+                if (programa.id_programa == selectedPrograma) {
+                    modalidadInput.value = programa.modalidad;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

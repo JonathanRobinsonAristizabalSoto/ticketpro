@@ -130,6 +130,7 @@ select {
     top: 40%;
     transform: translateY(-50%);
     cursor: pointer;
+    color: var(--color-verde);
 }
 
 /* Estilos de los botones */
