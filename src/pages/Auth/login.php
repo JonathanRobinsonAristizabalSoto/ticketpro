@@ -46,7 +46,7 @@
                 <a href="./register.php">Registrarse</a>
                 <a href="./src/pages/About/about.php">Nosotros</a>
                 <a href="./src/pages/Contact/contact.php">Contacto</a>
-                
+
             </nav>
         </div>
     </header>
@@ -75,13 +75,19 @@
 
                 <!-- Campo de contraseña -->
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" required>
+                    <i class="fas fa-eye" id="togglePassword"></i>
+                </div>
 
                 <!-- Selector de tipo de usuario -->
                 <label for="user-type">Tipo de usuario:</label>
                 <select id="user-type" name="user-type" required>
                     <option value="1">Administrador</option>
-                    <option value="2">Usuario</option>
+                    <option value="2">Supervisor</option>
+                    <option value="3">Soporte</option>
+                    <option value="4">Operador</option>
+                    <option value="5">Usuario</option>
                 </select>
 
                 <!-- capchat -->
@@ -119,6 +125,7 @@
     </footer>
 
     <script src="../../../assets/js/menu.js"></script>
+    <script src="../../../assets/js/togglePassword.js"></script>
 </body>
 
 </html>

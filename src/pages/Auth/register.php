@@ -119,7 +119,6 @@ $conexion->close();
                 <a href="./login.php">Login</a>
                 <a href="./src/pages/About/about.php">Nosotros</a>
                 <a href="./src/pages/Contact/contact.php">Contacto</a>
-                
             </nav>
         </div>
     </header>
@@ -164,17 +163,26 @@ $conexion->close();
                 <!-- Campo de contraseña -->
                 <p>La contraseña debe tener al menos 6 caracteres, una letra mayúscula y un símbolo.</p>
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required placeholder="Contraseña">
+                <div class="password-container">
+                    <input type="password" id="password" name="password" required placeholder="Contraseña">
+                    <i class="fas fa-eye" id="togglePassword"></i>
+                </div>
 
                 <!-- Confirmar contraseña -->
                 <label for="confirm-password">Confirmar contraseña:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirmar contraseña">
+                <div class="password-container">
+                    <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirmar contraseña">
+                    <i class="fas fa-eye" id="toggleConfirmPassword"></i>
+                </div>
 
                 <!-- Tipo de usuario -->
                 <label for="tipoUsuario">Tipo de usuario:</label>
                 <select id="tipoUsuario" name="tipoUsuario" required>
                     <option value="1">Administrador</option>
-                    <option value="2">Usuario</option>
+                    <option value="2">Supervisor</option>
+                    <option value="3">Soporte</option>
+                    <option value="4">Operador</option>
+                    <option value="5">Usuario</option>
                 </select>
 
                 <!-- Acciones del formulario -->
@@ -191,6 +199,7 @@ $conexion->close();
         <p>&copy; 2024 TicketPro+ - Todos los derechos reservados</p>
     </footer>
     <script src="../../../assets/js/menu.js"></script>
+    <script src="../../../assets/js/togglePassword.js"></script>
 </body>
 
 </html>

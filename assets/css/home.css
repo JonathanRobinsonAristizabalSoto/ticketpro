@@ -396,6 +396,26 @@ tr.odd {
   }
 }
 
+/* Estilos del título y párrafo en el header */
+.titulo_header {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  h1 {
+    font-size: 1.5rem;
+    color: var(--color-blanco);
+    margin-bottom: -1rem; /* Ajusta este valor para controlar la separación */
+  }
+
+  p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--color-blanco);
+  }
+}
+
 /* Responsividad - Media Queries */
 
 /* Dispositivos móviles (pantallas menores a 600px) */

@@ -50,6 +50,15 @@ main {
     padding: 20px;
 }
 
+.container {
+    background-color: var(--color-gris-oscuro);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
 .login-container,
 .register-container,
 .password-reset-container {
@@ -68,7 +77,13 @@ main {
     color: var(--color-blanco);
 }
 
-h1, h2 {
+h1 {
+    font-size: 1.5rem;
+    color: var(--color-blanco);
+}
+
+h2 {
+    font-size: 1.2rem;
     color: var(--color-blanco);
 }
 
@@ -101,6 +116,27 @@ select {
     border-radius: 3px;
     background-color: var(--color-blanco);
     color: var(--color-gris-oscuro);
+    
+}
+
+/* Estilos del contenedor de la contraseña */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%; /* Asegurar que el input de contraseña tenga el mismo ancho */
+    padding-right: 30px; /* Espacio para el ícono */
+    box-sizing: border-box; /* Incluir padding y borde en el ancho total */
+}
+
+.password-container i {
+    position: absolute;
+    right: 10px;
+    top: 40%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
 
 /* Estilos de los botones */
@@ -130,7 +166,8 @@ button:hover,
 /* Estilos responsivos */
 @media (max-width: 768px) {
     .login-container,
-    .register-container {
+    .register-container,
+    .password-reset-container {
         margin: 10px;
         padding: 15px;
     }
