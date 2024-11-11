@@ -92,12 +92,12 @@
 
                 <!-- capchat -->
                 <div class="g-recaptcha" data-sitekey="6LdpSHwpAAAAABpEL1Pus7OzGgEAJ8U212pSYx7z" data-action="LOGIN"></div>
-
+                <br>
                 <!-- Acciones del formulario -->
                 <div class="form-actions">
-                    <button type="submit">Iniciar sesión</button>
-                    <a href="./register.php">Registrarse</a>
-                    <a href="./password_recovery.php">Olvidé mi contraseña</a>
+                    <button type="submit" class="btniniciarsesion">Iniciar sesión</button>
+                    <a href="./register.php" class="registrarse" >Registrarse</a>
+                    <a href="./password_recovery.php" class="olvideContrase">Olvidé mi contraseña</a>
                 </div>
             </form>
         </div>
